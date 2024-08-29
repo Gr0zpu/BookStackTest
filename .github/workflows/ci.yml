@@ -45,6 +45,12 @@ jobs:
           --restart unless-stopped \
           lscr.io/linuxserver/mariadb:latest
 
+      - name: Wait for database to be ready
+        run: sleep 15
+
+      - name: List files for debugging
+        run: ls -la backupDB
+
       - name: Restore database from backup
         run: |
           docker cp backupDB/backup.sql bookstack_db:/backup.sql
