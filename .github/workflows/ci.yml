@@ -46,7 +46,7 @@ jobs:
           lscr.io/linuxserver/mariadb:latest
 
       - name: Wait for database to be ready
-        run: sleep 15
+        run: sleep 30
 
       - name: List files for debugging
         run: ls -la backupDB
