@@ -38,25 +38,21 @@ jobs:
           -e PUID=1000 \
           -e PGID=1000 \
           -e TZ=Europe/London \
-          -e MYSQL_ROOT_PASSWORD=yourdbpass \
-          -e MYSQL_DATABASE=bookstackapp \
-          -e MYSQL_USER=bookstack \
-          -e MYSQL_PASSWORD=yourdbpass \
+          -e MYSQL_ROOT_PASSWORD=${{secrets.MYSQL_ROOT_PASSWORD}} \
+          -e MYSQL_DATABASE=${{secrets.MYSQL_DATABASE}} \
+          -e MYSQL_USER=${{secrets.MYSQL_USER}} \
+          -e MYSQL_PASSWORD=${{secrets.MYSQL_PASSWORD}} \
           --restart unless-stopped \
           lscr.io/linuxserver/mariadb:latest
 
       - name: Wait for database to be ready
-        run: sleep 30
-
-      - name: List files for debugging
-        run: ls -la backupDB
+        run: sleep 10
 
       - name: Restore database from backup
         run: |
           docker cp ${{ github.workspace }}/backupDB/backup.sql bookstack_db:/backup.sql
           docker exec -i bookstack_db ls -la /backup.sql
           docker exec -i bookstack_db /bin/sh -c "cat /backup.sql | /usr/bin/mysql -u bookstack -pyourdbpass bookstackapp"
-
 
       - name: Start BookStack container
         run: |
@@ -69,9 +65,9 @@ jobs:
             -e APP_URL=http://localhost:6875 \
             -e DB_HOST=bookstack_db \
             -e DB_PORT=3306 \
-            -e DB_USER=bookstack \
-            -e DB_PASS=yourdbpass \
-            -e DB_DATABASE=bookstackapp \
+            -e DB_USER=${{secrets.MYSQL_USER}} \
+            -e DB_PASS=${{secrets.MYSQL_PASSWORD}} \
+            -e DB_DATABASE=${{secrets.MYSQL_DATABASE}} \
             -p 6875:80 \
             --restart unless-stopped \
             lscr.io/linuxserver/bookstack:latest
