@@ -54,8 +54,8 @@ jobs:
       - name: Restore database from backup
         run: |
           docker cp ${{ github.workspace }}/backupDB/backup.sql bookstack_db:/backup.sql
-          docker exec -i bookstack_db ls -la /backup.sql 
-          docker exec -i bookstack_db /usr/bin/mysql -u bookstack -pyourdbpass bookstackapp < /backup.sql
+          docker exec -i bookstack_db ls -la /backup.sql
+          docker exec -i bookstack_db /bin/sh -c "/usr/bin/mysql -u bookstack -pyourdbpass bookstackapp < /backup.sql"
 
       - name: Start BookStack container
         run: |
