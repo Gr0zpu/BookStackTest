@@ -45,6 +45,11 @@ jobs:
           --restart unless-stopped \
           lscr.io/linuxserver/mariadb:latest
 
+      - name: Restore database from backup
+        run: |
+          docker cp backupDB/backup.sql bookstack_db:/backup.sql
+          docker exec -i bookstack_db /usr/bin/mysql -u bookstack -pyourdbpass bookstackapp < /backup.sql
+
       - name: Start BookStack container
         run: |
           docker run -d \
@@ -68,3 +73,9 @@ jobs:
 
       - name: Run tests
         run: ./gradlew test
+
+      - name: Stop and remove containers
+        run: |
+          docker stop bookstack bookstack_db
+          docker rm bookstack bookstack_db
+          docker network rm bookstack-network
