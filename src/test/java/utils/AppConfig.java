@@ -2,7 +2,10 @@ package utils;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources("classpath:project.properties")
+@Config.Sources({
+        "classpath:localProject.properties",
+        "system:env"
+})
 public interface AppConfig extends Config {
     @Key("url")
     String url();

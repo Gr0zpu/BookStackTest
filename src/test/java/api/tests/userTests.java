@@ -13,6 +13,9 @@ import api.services.UserService;
 import utils.AppConfig;
 import utils.RandomTestData;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static io.restassured.RestAssured.given;
 
 
@@ -44,6 +47,7 @@ public class userTests {
         userService.getUserList(specification)
                 .should(Conditions.hasStatusCode(200));
     }
+
     @Test
     @Tag("API")
     @Tag("Positive")
@@ -87,5 +91,4 @@ public class userTests {
         userService.deleteUser(specification, user)
                 .should(Conditions.hasStatusCode(204));
     }
-
 }
