@@ -91,7 +91,7 @@ jobs:
             lscr.io/linuxserver/bookstack:latest
 
       - name: Wait for services to be ready
-        run: sleep 30
+        run: sleep 10
 
       - name: Run tests
         run: ./gradlew test
@@ -104,7 +104,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/reports/allure-report
+          publish_dir: ./build/reports/allure-report/
 
       - name: List generated Allure files
         run: ls -la ./build/reports/allure-report
