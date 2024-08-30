@@ -106,12 +106,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/reports/allure-report/allureReport/
 
-      - name: Check for test failures and fail the build if there are any
-        run: |
-            if grep -q "FAILED" ./build/reports/tests/test/index.html; then
-              echo "Tests failed. Failing the build."
-              exit 1
-            fi
+      - name: Fail the build if there were test failures
+        if: failure() || (success() && steps.test.outcome == 'failure')
+        run: exit 1
 
       - name: Stop and remove containers
         run: |
