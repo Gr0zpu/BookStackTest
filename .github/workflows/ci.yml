@@ -106,8 +106,12 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/reports/allure-report/allureReport/
 
-      - name: List generated Allure files
-        run: ls -la ./build/reports/allure-report
+      - name: Check for test failures and fail the build if there are any
+        run: |
+            if grep -q "FAILED" ./build/reports/tests/test/index.html; then
+              echo "Tests failed. Failing the build."
+              exit 1
+            fi
 
       - name: Stop and remove containers
         run: |
