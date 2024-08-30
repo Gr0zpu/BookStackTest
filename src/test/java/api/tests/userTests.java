@@ -47,7 +47,6 @@ public class userTests {
         userService.getUserList(specification)
                 .should(Conditions.hasStatusCode(200));
     }
-
     @Test
     @Tag("API")
     @Tag("Positive")
@@ -90,5 +89,17 @@ public class userTests {
 
         userService.deleteUser(specification, user)
                 .should(Conditions.hasStatusCode(204));
+    }
+
+    @Test
+    @Tag("API")
+    @Tag("Positive")
+    public void deleteAllUsers(){
+        ArrayList<User> users = new ArrayList<>(userService.getUserList(specification).asList("data",User.class));
+        for (User user : users){
+            if (user.getId() > 3){
+                userService.deleteUser(specification, user);
+            }
+        }
     }
 }
