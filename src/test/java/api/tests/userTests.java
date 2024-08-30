@@ -7,6 +7,7 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import api.models.user.User;
+import listeners.CustomAllureRestAssured;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.*;
 import api.services.UserService;
@@ -14,7 +15,6 @@ import utils.AppConfig;
 import utils.RandomTestData;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static io.restassured.RestAssured.given;
 
@@ -34,7 +34,7 @@ public class userTests {
     public static void setUp(){
         RestAssured.baseURI = appConfig.url();
         userService = new UserService();
-        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
+        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter(), new CustomAllureRestAssured());
         specification = RestAssured.given()
                 .header("Authorization", String.format("Token %s:%s", appConfig.adminApiKey(), appConfig.adminApiSecretKey()))
                 .contentType(ContentType.JSON);

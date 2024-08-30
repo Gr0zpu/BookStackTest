@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id "io.freefair.lombok" version "8.10"
+    id "io.qameta.allure" version "2.12.0"
 }
 
 group = 'org.example'
@@ -20,6 +21,7 @@ dependencies {
     testImplementation 'io.rest-assured:rest-assured:5.5.0'
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'org.assertj:assertj-core:3.26.3'
+    testImplementation 'io.qameta.allure:allure-rest-assured:2.29.0'
 }
 
 test {
