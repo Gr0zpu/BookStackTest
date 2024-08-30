@@ -104,7 +104,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/reports/allure-report/
+          publish_dir: ./build/reports/allure-report/allureReport/
 
       - name: List generated Allure files
         run: ls -la ./build/reports/allure-report
