@@ -96,15 +96,18 @@ jobs:
       - name: Run tests
         run: ./gradlew test
 
-      - name: Stop and remove containers
-        run: |
-          docker stop bookstack bookstack_db
-          docker rm bookstack bookstack_db
-          docker network rm bookstack-network
-
       - name: Deploy Allure Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/reports/allure-report
+
+      - name: List generated Allure files
+        run: ls -la ./build/reports/allure-report
+
+      - name: Stop and remove containers
+        run: |
+          docker stop bookstack bookstack_db
+          docker rm bookstack bookstack_db
+          docker network rm bookstack-network
