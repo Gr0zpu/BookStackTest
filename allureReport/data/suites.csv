@@ -1,7 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","1225","deleteUserTest()","","Fri Aug 30 23:33:01 UTC 2024","passed","Fri Aug 30 23:33:02 UTC 2024","","api.tests.userTests","api.tests.userTests","deleteUserTest"
-"","1533","updateUserTest()","","Fri Aug 30 23:32:58 UTC 2024","passed","Fri Aug 30 23:33:00 UTC 2024","","api.tests.userTests","api.tests.userTests","updateUserTest"
-"","2003","getUserListTest()","","Fri Aug 30 23:32:53 UTC 2024","failed","Fri Aug 30 23:32:55 UTC 2024","","api.tests.userTests","api.tests.userTests","getUserListTest"
-"","982","createNewUserTest()","","Fri Aug 30 23:33:00 UTC 2024","passed","Fri Aug 30 23:33:01 UTC 2024","","api.tests.userTests","api.tests.userTests","createNewUserTest"
-"","874","deleteAllUsers()","","Fri Aug 30 23:32:57 UTC 2024","passed","Fri Aug 30 23:32:58 UTC 2024","","api.tests.userTests","api.tests.userTests","deleteAllUsers"
-"","2550","readUserTest()","","Fri Aug 30 23:32:55 UTC 2024","passed","Fri Aug 30 23:32:57 UTC 2024","","api.tests.userTests","api.tests.userTests","readUserTest"
