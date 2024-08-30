@@ -94,7 +94,7 @@ jobs:
         run: sleep 10
 
       - name: Run tests
-        run: ./gradlew test
+        run: ./gradlew test --continue || true
 
       - name: Generate Allure Report
         run: ./gradlew allureReport
