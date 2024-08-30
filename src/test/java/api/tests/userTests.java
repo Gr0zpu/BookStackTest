@@ -13,6 +13,9 @@ import api.services.UserService;
 import utils.AppConfig;
 import utils.RandomTestData;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static io.restassured.RestAssured.given;
 
 
@@ -88,4 +91,15 @@ public class userTests {
                 .should(Conditions.hasStatusCode(204));
     }
 
+    @Test
+    @Tag("API")
+    @Tag("Positive")
+    public void deleteAllUsers(){
+        ArrayList<User> users = new ArrayList<>(userService.getUserList(specification).asList("data",User.class));
+        for (User user : users){
+            if (user.getId() > 3){
+                userService.deleteUser(specification, user);
+            }
+        }
+    }
 }
