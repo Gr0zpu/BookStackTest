@@ -107,8 +107,11 @@ jobs:
           publish_dir: ./build/reports/allure-report/allureReport/
 
       - name: Fail the build if there were test failures
-        if: failure() || (success() && steps.test.outcome == 'failure')
-        run: exit 1
+        run: |
+          if grep -q "FAILED" <<<"${{ steps.test_results.outputs.test_results }}"; then
+            echo "Test failures detected, failing the build."
+            exit 1
+          fi
 
       - name: Stop and remove containers
         run: |
