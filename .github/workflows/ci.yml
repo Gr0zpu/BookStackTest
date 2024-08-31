@@ -96,6 +96,16 @@ jobs:
       - name: Run tests and capture output
         run: ./gradlew test --continue | tee test_output.log || true
 
+      - name: Download Allure history from gh-pages
+        run: |
+          git fetch origin gh-pages:gh-pages
+          git checkout gh-pages -- history || true
+
+      - name: Restore Allure history
+        run: |
+          mkdir -p build/reports/allure-report/allureReport/history
+          cp -R history/* build/reports/allure-report/allureReport/history || true
+
       - name: Generate Allure Report
         run: ./gradlew allureReport
 
