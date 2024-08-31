@@ -96,6 +96,13 @@ jobs:
       - name: Run tests and capture output
         run: ./gradlew test --continue | tee test_output.log || true
 
+      - name: Copy Allure Results from gh-pages to build/allure-results
+        run: |
+          git fetch origin gh-pages
+          git checkout origin/gh-pages -- allure-results || true
+          mkdir -p build/allure-results
+          cp -R allure-results/* build/allure-results/ || true
+
       - name: Generate Allure Report
         run: ./gradlew allureReport
 
