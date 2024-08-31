@@ -105,8 +105,9 @@ jobs:
 
       - name: Copy All Files Except Allure Results from gh-pages
         run: |
-          git fetch origin gh-pages
-          rsync -av --exclude='allure-results' gh-pages/ build/reports/allure-report/allureReport/
+          git clone --depth=1 --branch=gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git gh-pages-temp
+          mkdir -p build/reports/allure-report/allureReport
+          rsync -av --exclude='allure-results' gh-pages-temp/ build/reports/allure-report/allureReport/
 
       - name: Generate Allure Report
         run: ./gradlew allureReport
