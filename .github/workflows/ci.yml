@@ -99,18 +99,28 @@ jobs:
       - name: Download Allure history from gh-pages
         run: |
           git fetch origin gh-pages:gh-pages
-          git checkout gh-pages -- history || true
+          git checkout gh-pages -- history data export || true
 
-      - name: Check history content after checkout
-        run: ls -la history
-
-      - name: Restore Allure history
+      - name: Check content after checkout
         run: |
-          mkdir -p build/reports/allure-report/allureReport/history
-          cp -R history/* build/reports/allure-report/allureReport/history || true
+          ls -la history
+          ls -la data
+          ls -la export
 
-      - name: Check copied history content
-        run: ls -la build/reports/allure-report/allureReport/history
+      - name: Restore Allure history and data
+        run: |
+          mkdir -p build/reports/allure-report/history
+          mkdir -p build/reports/allure-report/data
+          mkdir -p build/reports/allure-report/export
+          cp -R history/* build/reports/allure-report/history || true
+          cp -R data/* build/reports/allure-report/data || true
+          cp -R export/* build/reports/allure-report/export || true
+
+      - name: Check copied content
+        run: |
+          ls -la build/reports/allure-report/history
+          ls -la build/reports/allure-report/data
+          ls -la build/reports/allure-report/export
 
       - name: Generate Allure Report
         run: ./gradlew allureReport
