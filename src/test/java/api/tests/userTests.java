@@ -45,7 +45,7 @@ public class userTests {
     @Tag("Positive")
     public void getUserListTest(){
         userService.getUserList(specification)
-                .should(Conditions.hasStatusCode(202));
+                .should(Conditions.hasStatusCode(200));
     }
     @Test
     @Tag("API")
