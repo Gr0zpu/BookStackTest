@@ -96,41 +96,25 @@ jobs:
       - name: Run tests and capture output
         run: ./gradlew test --continue | tee test_output.log || true
 
-      - name: Download Allure history from gh-pages
-        run: |
-          git fetch origin gh-pages:gh-pages
-          git checkout gh-pages -- history data export || true
-
       - name: Check content after checkout
         run: |
           ls -la history
           ls -la data
           ls -la export
 
-      - name: Restore Allure history and data
-        run: |
-          mkdir -p build/reports/allure-report/allureReport/history
-          mkdir -p build/reports/allure-report/allureReport/data
-          mkdir -p build/reports/allure-report/allureReport/export
-          cp -R history/* build/reports/allure-report/allureReport/history || true
-          cp -R data/* build/reports/allure-report/allureReport/data || true
-          cp -R export/* build/reports/allure-report/allureReport/export || true
-
-      - name: Check copied content
-        run: |
-          ls -la build/reports/allure-report/allureReport/history
-          ls -la build/reports/allure-report/allureReport/data
-          ls -la build/reports/allure-report/allureReport/export
-
       - name: Generate Allure Report
         run: ./gradlew allureReport
 
-      - name: Deploy Allure Report to GitHub Pages
+      - name: Deploy Allure Report and Results to GitHub Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/reports/allure-report/allureReport/
+        run: |
+          mkdir -p combined-deploy
+          cp -R ./build/reports/allure-report/allureReport/* ./combined-deploy/
+
+          mkdir -p combined-deploy/allure-results
+          cp -R ./build/allure-results/* ./combined-deploy/allure-results/
+
+          npx gh-pages -d combined-deploy --repo=https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
       - name: Fail the build if there were test failures
         run: |
