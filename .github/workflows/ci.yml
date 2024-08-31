@@ -62,8 +62,6 @@ jobs:
         run: |
          openssl enc -aes-256-cbc -d -pbkdf2 -iter 100000 -in ${{ github.workspace }}/backupDB/backup.sql.enc -out ${{ github.workspace }}/backupDB/backup.sql -k ${{ env.BACKUP_PASSWORD }}
 
-
-
       - name: Restore database from backup
         run: |
           docker cp ${{ github.workspace }}/backupDB/backup.sql bookstack_db:/backup.sql
@@ -96,17 +94,12 @@ jobs:
       - name: Run tests and capture output
         run: ./gradlew test --continue | tee test_output.log || true
 
-      - name: Copy Allure Results from gh-pages to build/allure-results
+      - name: Copy Allure Results and History from gh-pages
         run: |
           git fetch origin gh-pages
           git checkout origin/gh-pages -- allure-results || true
           mkdir -p build/allure-results
           cp -R allure-results/* build/allure-results/ || true
-          
-
-      - name: Copy All Files Except Allure Results from gh-pages
-        run: |
-          git fetch origin gh-pages
           git checkout origin/gh-pages -- history || true
           mkdir -p build/reports/allure-report/allureReport/history
           cp -R history/* build/reports/allure-report/allureReport/history || true
