@@ -21,19 +21,18 @@
 </head>
 <body>
 <div>
-    <pre><code>PUT: http://localhost:6875/api/users/68</code></pre>
+    <pre><code>POST: http://localhost:6875/api/users</code></pre>
 </div>
 
     <h4>Body</h4>
     <div>
         <pre><code>
 {
-    "id": 68,
     "send_invite": false,
     "roles.": 3,
-    "name": "Alejandrina Okuneva",
+    "name": "Marvin Breitenberg V",
     "language": "Us",
-    "email": "bari.heathcote@yahoo.com",
+    "email": "augustus.stokes@hotmail.com",
     "password": "***"
 }</code></pre>
     </div>
@@ -61,13 +60,12 @@ application/json
     <h4>Curl</h4>
     <div>
         <pre><code>
-curl -v -X PUT 'http://localhost:6875/api/users/68' -H 'Authorization: Token ***************************' -H 'Accept: */*' -H 'Content-Type: application/json' -d '{
-    "id": 68,
+curl -v -X POST 'http://localhost:6875/api/users' -H 'Authorization: Token ***************************' -H 'Accept: */*' -H 'Content-Type: application/json' -d '{
     "send_invite": false,
     "roles.": 3,
-    "name": "Alejandrina Okuneva",
+    "name": "Marvin Breitenberg V",
     "language": "Us",
-    "email": "bari.heathcote@yahoo.com",
+    "email": "augustus.stokes@hotmail.com",
     "password": "***"
 }'</code></pre>
     </div>
