@@ -103,6 +103,11 @@ jobs:
           mkdir -p build/allure-results
           cp -R allure-results/* build/allure-results/ || true
 
+      - name: Copy All Files Except Allure Results from gh-pages
+        run: |
+          git fetch origin gh-pages
+          rsync -av --exclude='allure-results' gh-pages/ build/reports/allure-report/allureReport/
+
       - name: Generate Allure Report
         run: ./gradlew allureReport
 
