@@ -109,18 +109,18 @@ jobs:
 
       - name: Restore Allure history and data
         run: |
-          mkdir -p build/reports/allure-report/history
-          mkdir -p build/reports/allure-report/data
-          mkdir -p build/reports/allure-report/export
-          cp -R history/* build/reports/allure-report/history || true
-          cp -R data/* build/reports/allure-report/data || true
-          cp -R export/* build/reports/allure-report/export || true
+          mkdir -p build/reports/allure-report/allureReport/history
+          mkdir -p build/reports/allure-report/allureReport/data
+          mkdir -p build/reports/allure-report/allureReport/export
+          cp -R history/* build/reports/allure-report/allureReport/history || true
+          cp -R data/* build/reports/allure-report/allureReport/data || true
+          cp -R export/* build/reports/allure-report/allureReport/export || true
 
       - name: Check copied content
         run: |
-          ls -la build/reports/allure-report/history
-          ls -la build/reports/allure-report/data
-          ls -la build/reports/allure-report/export
+          ls -la build/reports/allure-report/allureReport/history
+          ls -la build/reports/allure-report/allureReport/data
+          ls -la build/reports/allure-report/allureReport/export
 
       - name: Generate Allure Report
         run: ./gradlew allureReport
