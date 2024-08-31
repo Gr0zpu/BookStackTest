@@ -62,8 +62,6 @@ jobs:
         run: |
          openssl enc -aes-256-cbc -d -pbkdf2 -iter 100000 -in ${{ github.workspace }}/backupDB/backup.sql.enc -out ${{ github.workspace }}/backupDB/backup.sql -k ${{ env.BACKUP_PASSWORD }}
 
-
-
       - name: Restore database from backup
         run: |
           docker cp ${{ github.workspace }}/backupDB/backup.sql bookstack_db:/backup.sql
@@ -91,13 +89,47 @@ jobs:
             lscr.io/linuxserver/bookstack:latest
 
       - name: Wait for services to be ready
-        run: sleep 30
+        run: sleep 10
 
-      - name: Run tests
-        run: ./gradlew test
+      - name: Run tests and capture output
+        run: ./gradlew test --continue | tee test_output.log || true
+
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Allure Report action
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: build/allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+
+      - name: Fail the build if there were test failures
+        run: |
+          if grep -q "FAILED" test_output.log; then
+            echo "Test failures detected, failing the build."
+            exit 1
+          fi
 
       - name: Stop and remove containers
+        if: always()
         run: |
-          docker stop bookstack bookstack_db
-          docker rm bookstack bookstack_db
-          docker network rm bookstack-network
+          docker stop bookstack bookstack_db || true
+          docker rm bookstack bookstack_db || true
+          docker network rm bookstack-network || true
