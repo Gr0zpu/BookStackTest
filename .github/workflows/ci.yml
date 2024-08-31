@@ -96,12 +96,6 @@ jobs:
       - name: Run tests and capture output
         run: ./gradlew test --continue | tee test_output.log || true
 
-      - name: Check content after checkout
-        run: |
-          ls -la history
-          ls -la data
-          ls -la export
-
       - name: Generate Allure Report
         run: ./gradlew allureReport
 
