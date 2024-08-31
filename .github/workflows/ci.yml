@@ -113,10 +113,9 @@ jobs:
             exit 1
           fi
 
-    post:
-      always:
-        - name: Stop and remove containers
-          run: |
-            docker stop bookstack bookstack_db || true
-            docker rm bookstack bookstack_db || true
-            docker network rm bookstack-network || true
+      - name: Stop and remove containers
+        if: always()
+        run: |
+          docker stop bookstack bookstack_db || true
+          docker rm bookstack bookstack_db || true
+          docker network rm bookstack-network || true
