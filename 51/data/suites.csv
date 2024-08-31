@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sat Aug 31 19:54:40 GMT 2024","Sat Aug 31 19:54:41 GMT 2024","825","","api.tests.userTests","","api.tests.userTests","createNewUserTest","createNewUserTest()",""
+"passed","Sat Aug 31 19:54:32 GMT 2024","Sat Aug 31 19:54:35 GMT 2024","2646","","api.tests.userTests","","api.tests.userTests","getUserListTest","getUserListTest()",""
+"passed","Sat Aug 31 19:54:35 GMT 2024","Sat Aug 31 19:54:37 GMT 2024","2125","","api.tests.userTests","","api.tests.userTests","readUserTest","readUserTest()",""
+"passed","Sat Aug 31 19:54:37 GMT 2024","Sat Aug 31 19:54:38 GMT 2024","875","","api.tests.userTests","","api.tests.userTests","deleteAllUsers","deleteAllUsers()",""
+"passed","Sat Aug 31 19:54:41 GMT 2024","Sat Aug 31 19:54:42 GMT 2024","1189","","api.tests.userTests","","api.tests.userTests","deleteUserTest","deleteUserTest()",""
+"passed","Sat Aug 31 19:54:38 GMT 2024","Sat Aug 31 19:54:40 GMT 2024","1511","","api.tests.userTests","","api.tests.userTests","updateUserTest","updateUserTest()",""
