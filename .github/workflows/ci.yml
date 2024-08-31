@@ -99,16 +99,23 @@ jobs:
       - name: Generate Allure Report
         run: ./gradlew allureReport
 
+      - name: Prepare Allure Report and Results for Deployment
+        run: |
+          mkdir -p combined-deploy/allure-results
+          cp -R ./build/reports/allure-report/allureReport/* ./combined-deploy/
+          cp -R ./build/allure-results/* ./combined-deploy/allure-results/
+
       - name: Deploy Allure Report and Results to GitHub Pages
         if: always()
         run: |
-          mkdir -p combined-deploy
-          cp -R ./build/reports/allure-report/allureReport/* ./combined-deploy/
-
-          mkdir -p combined-deploy/allure-results
-          cp -R ./build/allure-results/* ./combined-deploy/allure-results/
-
-          npx gh-pages -d combined-deploy --repo=https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git clone --depth=1 --branch=gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git gh-pages
+          cp -R combined-deploy/* gh-pages/
+          cd gh-pages
+          git add .
+          git commit -m "Deploy Allure Report and Results"
+          git push origin gh-pages
 
       - name: Fail the build if there were test failures
         run: |
