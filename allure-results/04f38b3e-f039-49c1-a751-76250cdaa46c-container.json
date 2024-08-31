@@ -1,1 +1,0 @@
-{"uuid":"04f38b3e-f039-49c1-a751-76250cdaa46c","name":"deleteUserTest()","children":["e293ffc8-127a-441d-90e9-d997a27853ce"],"befores":[{"name":"initTestUser","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1725073702800,"stop":1725073702801}],"afters":[],"start":1725073702798,"stop":1725073704041}

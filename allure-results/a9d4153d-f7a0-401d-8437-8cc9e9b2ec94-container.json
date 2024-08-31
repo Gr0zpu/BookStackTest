@@ -1,1 +1,0 @@
-{"uuid":"a9d4153d-f7a0-401d-8437-8cc9e9b2ec94","name":"readUserTest()","children":["3e126b36-b3f4-4bab-80a6-fb1486507333"],"befores":[{"name":"initTestUser","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1725072365289,"stop":1725072365290}],"afters":[],"start":1725072365286,"stop":1725072367743}

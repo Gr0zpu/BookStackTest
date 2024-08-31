@@ -1,1 +1,0 @@
-{"uuid":"a1f307cc-567b-4958-9c86-fd75ea21f1e7","name":"getUserListTest()","children":["b9a0c667-9551-4c00-b77d-4031874a908c"],"befores":[{"name":"initTestUser","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1725073695135,"stop":1725073695319}],"afters":[],"start":1725073695102,"stop":1725073697154}
