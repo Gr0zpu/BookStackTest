@@ -99,9 +99,6 @@ jobs:
       - name: Generate Allure Report
         run: ./gradlew allureReport
 
-      - name: View test output log
-        run: cat test_output.log
-
       - name: Deploy Allure Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
@@ -116,8 +113,10 @@ jobs:
             exit 1
           fi
 
-      - name: Stop and remove containers
-        run: |
-          docker stop bookstack bookstack_db
-          docker rm bookstack bookstack_db
-          docker network rm bookstack-network
+    post:
+      always:
+        - name: Stop and remove containers
+          run: |
+            docker stop bookstack bookstack_db || true
+            docker rm bookstack bookstack_db || true
+            docker network rm bookstack-network || true
