@@ -22,6 +22,9 @@ dependencies {
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'org.assertj:assertj-core:3.26.3'
     testImplementation 'io.qameta.allure:allure-rest-assured:2.29.0'
+    testImplementation 'io.rest-assured:json-schema-validator:5.5.0'
+    testImplementation 'io.qameta.allure:allure-junit5:2.29.0'
+
 }
 
 test {
