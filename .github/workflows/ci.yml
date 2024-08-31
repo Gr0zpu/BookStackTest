@@ -93,11 +93,14 @@ jobs:
       - name: Wait for services to be ready
         run: sleep 10
 
-      - name: Run tests
-        run: ./gradlew test --continue || true
+      - name: Run tests and capture output
+        run: ./gradlew test --continue | tee test_output.log || true
 
       - name: Generate Allure Report
         run: ./gradlew allureReport
+
+      - name: View test output log
+        run: cat test_output.log
 
       - name: Deploy Allure Report to GitHub Pages
         if: always()
@@ -108,7 +111,7 @@ jobs:
 
       - name: Fail the build if there were test failures
         run: |
-          if grep -q "FAILED" <<<"${{ steps.test_results.outputs.test_results }}"; then
+          if grep -q "FAILED" test_output.log; then
             echo "Test failures detected, failing the build."
             exit 1
           fi
