@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","1535","updateUserTest()","","Wed Sep 04 07:11:30 GMT 2024","passed","Wed Sep 04 07:11:31 GMT 2024","","api.tests.userTests","api.tests.userTests","updateUserTest"
+"","1843","readUserTest()","","Wed Sep 04 07:11:27 GMT 2024","passed","Wed Sep 04 07:11:29 GMT 2024","","api.tests.userTests","api.tests.userTests","readUserTest"
+"","893","createNewUserTest()","","Wed Sep 04 07:11:31 GMT 2024","passed","Wed Sep 04 07:11:32 GMT 2024","","api.tests.userTests","api.tests.userTests","createNewUserTest"
+"","1631","getUserListTest()","","Wed Sep 04 07:11:26 GMT 2024","passed","Wed Sep 04 07:11:27 GMT 2024","","api.tests.userTests","api.tests.userTests","getUserListTest"
+"","630","deleteAllUsers()","","Wed Sep 04 07:11:29 GMT 2024","passed","Wed Sep 04 07:11:30 GMT 2024","","api.tests.userTests","api.tests.userTests","deleteAllUsers"
+"","1357","deleteUserTest()","","Wed Sep 04 07:11:32 GMT 2024","passed","Wed Sep 04 07:11:34 GMT 2024","","api.tests.userTests","api.tests.userTests","deleteUserTest"
