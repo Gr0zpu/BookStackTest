@@ -113,13 +113,13 @@ jobs:
           report_dir: './build/allure-results'
           list_dir: true
 
-      - name: Deploy report to Github Pages
+      - name: Git Commit and Push Action
+        uses: mgrybyk-org/git-commit-pull-push-action@v1
         if: always()
-        uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-history
+          repository: https://github.com/Gr0zpu/BookStackTest.git
+          branch: gh-pages
+          pull_args: --rebase -X ours
 
       - name: Fail the build if there were test failures
         run: |
