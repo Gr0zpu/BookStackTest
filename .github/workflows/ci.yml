@@ -19,6 +19,9 @@ jobs:
       MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
       BACKUP_PASSWORD: ${{ secrets.BACKUP_PASSWORD }}
 
+    permissions:
+        pull-requests: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -111,7 +114,6 @@ jobs:
           report_id: 'self-test'
           gh_pages: 'gh-pages'
           report_dir: './build/allure-results'
-          list_dir: true
 
       - name: Git Commit and Push Action
         uses: mgrybyk-org/git-commit-pull-push-action@v1
@@ -120,6 +122,17 @@ jobs:
           repository: gh-pages
           branch: gh-pages
           pull_args: --rebase -X ours
+          
+      - name: Comment PR with Allure Report link
+        if: ${{ always() && github.event_name == 'pull_request' && steps.allure.outputs.report_url }}
+        continue-on-error: true
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ${{ steps.allure.outputs.test_result_icon }} [Allure Report](${{ steps.allure.outputs.report_url }}) | [History](${{ steps.allure.outputs.report_history_url }})
+          comment_tag: allure_report
+          mode: recreate
+    
 
       - name: Fail the build if there were test failures
         run: |
