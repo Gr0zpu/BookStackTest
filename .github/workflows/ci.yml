@@ -18,6 +18,7 @@ jobs:
       MYSQL_USER: ${{ secrets.MYSQL_USER }}
       MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
       BACKUP_PASSWORD: ${{ secrets.BACKUP_PASSWORD }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     permissions:
         pull-requests: write
