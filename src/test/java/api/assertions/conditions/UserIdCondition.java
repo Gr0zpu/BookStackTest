@@ -5,12 +5,16 @@ import lombok.RequiredArgsConstructor;
 import api.models.user.User;
 import org.junit.jupiter.api.Assertions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @RequiredArgsConstructor
-public class UserIdCondition implements Condition{
+public class UserIdCondition extends ValidateStep implements Condition{
     private final User user;
     @Override
     public void check(ValidatableResponse response) {
         User getUser = response.extract().as(User.class);
-        Assertions.assertEquals(getUser.getId(), user.getId());
+
+        validateStep("Validate user ID condition",
+                () -> assertEquals(getUser.getId(), user.getId()));
     }
 }

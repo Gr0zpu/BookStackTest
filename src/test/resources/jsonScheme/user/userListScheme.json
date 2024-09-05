@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "external_auth_id": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "last_activity_at": {
+            "type": ["string", "null"]
+          },
+          "profile_url": {
+            "type": "string"
+          },
+          "edit_url": {
+            "type": "string"
+          },
+          "avatar_url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "created_at",
+          "updated_at",
+          "external_auth_id",
+          "slug",
+          "profile_url",
+          "edit_url",
+          "avatar_url"
+        ]
+      }
+    },
+    "total": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "data",
+    "total"
+  ]
+}

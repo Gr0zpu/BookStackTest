@@ -45,14 +45,16 @@ public class userTests {
     @Tag("Positive")
     public void getUserListTest(){
         userService.getUserList(specification)
-                .should(Conditions.hasStatusCode(200));
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/userListScheme.json"));
     }
     @Test
     @Tag("API")
     @Tag("Positive")
     public void createNewUserTest(){
         userService.register(user,specification)
-                .should(Conditions.hasStatusCode(200));
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/newUserResponseScheme.json"));
     }
 
     @Test
@@ -64,7 +66,8 @@ public class userTests {
 
         userService.getUserInfo(specification, user.getId())
                         .should(Conditions.hasStatusCode(200))
-                        .should(Conditions.idIsEqual(user));
+                        .should(Conditions.idIsEqual(user))
+                        .should(Conditions.jsonScheme("jsonScheme/user/readUserResponseScheme.json"));
     }
 
     @Test
@@ -77,7 +80,8 @@ public class userTests {
        userService.updateUser(specification,user)
                .should(Conditions.hasStatusCode(200))
                .should(Conditions.idIsEqual(user))
-               .should(Conditions.userUpdated(user));
+               .should(Conditions.userUpdated(user))
+               .should(Conditions.jsonScheme("jsonScheme/user/readUserResponseScheme.json"));
     }
 
     @Test
