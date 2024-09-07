@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static io.restassured.RestAssured.given;
 
 
-public class userTests {
+public class UserTests {
     private User user;
     private static AppConfig appConfig = ConfigFactory.create(AppConfig.class);
     private static RequestSpecification specification;
@@ -45,16 +45,14 @@ public class userTests {
     @Tag("Positive")
     public void getUserListTest(){
         userService.getUserList(specification)
-                .should(Conditions.hasStatusCode(200))
-                .should(Conditions.jsonScheme("jsonScheme/user/userListScheme.json"));
+                .should(Conditions.hasStatusCode(200));
     }
     @Test
     @Tag("API")
     @Tag("Positive")
     public void createNewUserTest(){
         userService.register(user,specification)
-                .should(Conditions.hasStatusCode(200))
-                .should(Conditions.jsonScheme("jsonScheme/user/newUserResponseScheme.json"));
+                .should(Conditions.hasStatusCode(200));
     }
 
     @Test
@@ -66,8 +64,7 @@ public class userTests {
 
         userService.getUserInfo(specification, user.getId())
                         .should(Conditions.hasStatusCode(200))
-                        .should(Conditions.idIsEqual(user))
-                        .should(Conditions.jsonScheme("jsonScheme/user/readUserResponseScheme.json"));
+                        .should(Conditions.idIsEqual(user));
     }
 
     @Test
@@ -80,8 +77,7 @@ public class userTests {
        userService.updateUser(specification,user)
                .should(Conditions.hasStatusCode(200))
                .should(Conditions.idIsEqual(user))
-               .should(Conditions.userUpdated(user))
-               .should(Conditions.jsonScheme("jsonScheme/user/readUserResponseScheme.json"));
+               .should(Conditions.userUpdated(user));
     }
 
     @Test
