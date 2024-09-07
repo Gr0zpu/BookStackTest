@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","559","getUserListTest()","","Sat Sep 07 23:42:46 UTC 2024","passed","Sat Sep 07 23:42:47 UTC 2024","","api.tests.UserTests","api.tests.UserTests","getUserListTest"
+"","842","createNewUserTest()","","Sat Sep 07 23:42:51 UTC 2024","passed","Sat Sep 07 23:42:51 UTC 2024","","api.tests.UserTests","api.tests.UserTests","createNewUserTest"
+"","1219","deleteUserTest()","","Sat Sep 07 23:42:51 UTC 2024","passed","Sat Sep 07 23:42:53 UTC 2024","","api.tests.UserTests","api.tests.UserTests","deleteUserTest"
+"","3854","createNewBookTest()","","Sat Sep 07 23:42:42 UTC 2024","passed","Sat Sep 07 23:42:46 UTC 2024","","api.tests.BooKTests","api.tests.BooKTests","createNewBookTest"
+"","1537","updateUserTest()","","Sat Sep 07 23:42:49 UTC 2024","passed","Sat Sep 07 23:42:51 UTC 2024","","api.tests.UserTests","api.tests.UserTests","updateUserTest"
+"","866","deleteAllUsers()","","Sat Sep 07 23:42:48 UTC 2024","passed","Sat Sep 07 23:42:49 UTC 2024","","api.tests.UserTests","api.tests.UserTests","deleteAllUsers"
+"","1526","readUserTest()","","Sat Sep 07 23:42:47 UTC 2024","passed","Sat Sep 07 23:42:48 UTC 2024","","api.tests.UserTests","api.tests.UserTests","readUserTest"
