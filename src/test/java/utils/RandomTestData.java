@@ -1,15 +1,21 @@
 package utils;
 
+import api.models.book.Book;
+import api.models.book.TagsItem;
 import com.github.javafaker.Faker;
 import api.models.user.User;
 
+import java.awt.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class RandomTestData {
     private static final Random random = new Random();
     private static final Faker faker = new Faker();
 
-    public static User getRandomUser(){
+    public static User getRandomUser() {
         return User.builder()
                 .name(faker.name().fullName())
                 .email(faker.internet().emailAddress())
@@ -20,4 +26,39 @@ public class RandomTestData {
                 .build();
 
     }
+    public static Book getRandomBook() {
+        return Book.builder()
+                .name(faker.book().title())
+                .description(faker.lorem().sentence())
+                .descriptionHtml("<p>" + faker.lorem().sentence() + "</p>")
+                .tags(getRandomTagList())
+                .build();
+
+    }
+
+    public static List<TagsItem> getRandomTagList() {
+        List<TagsItem> tagList = new ArrayList<>();
+        tagList.add(getRandomTagItem());
+        tagList.add(getRandomTagItem());
+        tagList.add(getRandomTagItem());
+
+        return tagList;
+    }
+
+    public static File getBookCover(){
+        return new File(faker.options().option(
+                System.getProperty("user.dir") + "/src/test/resources/bookCovers/cover1.jpg",
+                System.getProperty("user.dir") + "/src/test/resources/bookCovers/cover2.jpg",
+                System.getProperty("user.dir") + "/src/test/resources/bookCovers/cover3.jpg")
+        );
+    }
+
+    public static TagsItem getRandomTagItem() {
+        return TagsItem.builder()
+                .name(faker.commerce().department())
+                .value(faker.options().option("Highest", "Medium", "Lowest"))
+                .build();
+    }
+
+
 }
