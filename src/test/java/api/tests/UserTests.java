@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import static io.restassured.RestAssured.given;
 
 
-public class userTests extends BaseTest {
+public class UserTests extends BaseTest {
     private User user;
 
     @BeforeEach
