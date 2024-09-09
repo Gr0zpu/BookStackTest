@@ -26,13 +26,13 @@ public class Book {
 	private String createdAt;
 
 	@JsonProperty("owned_by")
-	private int ownedBy;
+	private Integer ownedBy;
 
 	@JsonProperty("default_template_id")
-	private int defaultTemplateId;
+	private Integer defaultTemplateId;
 
 	@JsonProperty("created_by")
-	private int createdBy;
+	private Integer createdBy;
 
 	@JsonProperty("tags")
 	private List<TagsItem> tags;
@@ -47,10 +47,10 @@ public class Book {
 	private String name;
 
 	@JsonProperty("updated_by")
-	private int updatedBy;
+	private Integer updatedBy;
 
 	@JsonProperty("id")
-	private int id;
+	private Integer id;
 
 	@JsonProperty("description_html")
 	private String descriptionHtml;
