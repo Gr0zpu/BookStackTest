@@ -7,6 +7,8 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import utils.AppConfig;
+import utils.Helpers;
+
 @Getter
 public class BaseTest {
     private AppConfig appConfig = ConfigFactory.create(AppConfig.class);
@@ -14,6 +16,10 @@ public class BaseTest {
     private final String WEB_ADMIN_PASSWORD = appConfig.webAdminPassword();
     @BeforeEach
     public void initSettings() {
+        String chromeOptionsEnv = System.getenv("CHROME_OPTIONS");
+        Configuration.browser = "chrome";
+        Configuration.browserCapabilities.setCapability("goog:chromeOptions", Helpers.getChromeOption());
+
         System.out.println(appConfig.url());
         Configuration.baseUrl = appConfig.url();
     }
