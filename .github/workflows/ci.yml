@@ -19,6 +19,8 @@ jobs:
       MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
       BACKUP_PASSWORD: ${{ secrets.BACKUP_PASSWORD }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      web_admin_login: ${{ secrets.WEB_ADMIN_LOGIN }}
+      web_admin_password: ${{ secrets.WEB_ADMIN_PASSWORD }}
 
     permissions:
       contents: write
@@ -34,6 +36,17 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
           cache: 'gradle'
+
+      - name: Install latest Google Chrome and ChromeDriver
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+          install-chromedriver: true
+
+      - name: Check Chrome and ChromeDriver version
+        run: |
+          chrome --version
+          chromedriver --version
 
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x gradlew
@@ -98,6 +111,8 @@ jobs:
 
       - name: Run tests and capture output
         run: ./gradlew test --continue | tee test_output.log || true
+        env:
+          CHROME_OPTIONS: "--remote-allow-origins=* --disable-gpu --no-sandbox --disable-dev-shm-usage --headless --window-size=1920,1080"
 
       - name: Get Allure history
         uses: actions/checkout@v4
@@ -124,7 +139,7 @@ jobs:
           repository: gh-pages
           branch: gh-pages
           pull_args: --rebase -X ours
-          
+
       - name: Comment PR with Allure Report link
         if: ${{ always() && github.event_name == 'pull_request' && steps.allure.outputs.report_url }}
         continue-on-error: true
@@ -134,7 +149,6 @@ jobs:
             ${{ steps.allure.outputs.test_result_icon }} [Allure Report](${{ steps.allure.outputs.report_url }}) | [History](${{ steps.allure.outputs.report_history_url }})
           comment_tag: allure_report
           mode: recreate
-    
 
       - name: Fail the build if there were test failures
         run: |
