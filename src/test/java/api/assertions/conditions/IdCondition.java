@@ -11,7 +11,7 @@ public class IdCondition extends ValidateStep implements Condition{
     @Override
     public void check(ValidatableResponse response) {
         Integer getIdFromResponse = response.extract().jsonPath().getInt("id");
-        validateStep("Validate user ID condition",
+        validateStep("Validate ID condition",
                 () -> assertEquals(userId, getIdFromResponse));
     }
 }
