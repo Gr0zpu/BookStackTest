@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import utils.RandomTestData;
 
+
 public class BooKTests extends BaseTest{
     private Book book;
     @BeforeEach
@@ -21,5 +22,13 @@ public class BooKTests extends BaseTest{
         getBookService().addNewBook(getSpecification(), book)
                 .should(Conditions.hasStatusCode(200))
                 .should(Conditions.jsonScheme("jsonScheme/user/newBookResponse.json"));
+    }
+    @Test
+    @Tag("API")
+    @Tag("Positive")
+    public void getAllAvailableBooksList() {
+        getBookService().getAvailableBooksList(getSpecification())
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/getBooksList.json"));
     }
 }
