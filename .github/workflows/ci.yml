@@ -35,8 +35,16 @@ jobs:
           distribution: 'corretto'
           cache: 'gradle'
 
-      - uses: browser-actions/setup-firefox@v1
-      - run: firefox --version
+      - name: Install latest Google Chrome and ChromeDriver
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: latest
+          install-chromedriver: true
+
+      - name: Check Chrome and ChromeDriver version
+        run: |
+          chrome --version
+          chromedriver --version
 
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x gradlew
@@ -101,6 +109,8 @@ jobs:
 
       - name: Run tests and capture output
         run: ./gradlew test --continue | tee test_output.log || true
+        env:
+          CHROME_OPTIONS: --remote-allow-origins=*;--disable-gpu;--no-sandbox;--disable-dev-shm-usage;--headless=new;--window-size=1920,1080
 
       - name: Get Allure history
         uses: actions/checkout@v4
