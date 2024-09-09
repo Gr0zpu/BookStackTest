@@ -1,29 +1,28 @@
-package selenium.asserts;
+package selenide.asserts;
 
-import lombok.Getter;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
-import selenium.pages.MainPage;
+import selenide.pages.MainPage;
 import utils.AppConfig;
 
-
-@Getter
 public class MainPageAsserts {
     private MainPage mainPage;
     private AppConfig appConfig = ConfigFactory.create(AppConfig.class);
-
     public MainPageAsserts(MainPage mainPage) {
         this.mainPage = mainPage;
     }
 
-    public MainPageAsserts assertElementIsPresent(By hoverLocator) {
-        Assertions.assertNotNull(mainPage.getDriver().findElement(hoverLocator));
+
+    public MainPageAsserts assertElementIsPresent(SelenideElement hoverLocator) {
+        Assertions.assertNotNull(hoverLocator);
         return this;
     }
 
     public MainPageAsserts assertUrlIsCorrect(){
-        Assertions.assertEquals(mainPage.getDriver().getCurrentUrl(),appConfig.url());
+        Assertions.assertEquals(WebDriverRunner.getWebDriver().getCurrentUrl(), appConfig.url());
         return this;
     }
 }
