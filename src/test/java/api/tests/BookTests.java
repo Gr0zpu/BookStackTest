@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import utils.RandomTestData;
 
 
-public class BooKTests extends BaseTest{
+public class BookTests extends BaseTest{
     private Book book;
     @BeforeEach
     public void initTestBook() {
@@ -30,5 +30,18 @@ public class BooKTests extends BaseTest{
         getBookService().getAvailableBooksList(getSpecification())
                 .should(Conditions.hasStatusCode(200))
                 .should(Conditions.jsonScheme("jsonScheme/user/getBooksList.json"));
+    }
+    @Test
+    @Tag("API")
+    @Tag("Positive")
+    public void getBookByIdTest() {
+        getBookService().addNewBook(getSpecification(), book)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/newBookResponse.json"));
+
+        getBookService().getBookById(getSpecification(), book.getId())
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/getBookById.json"))
+                .should(Conditions.idCondition(book.getId()));
     }
 }

@@ -1,10 +1,8 @@
 package api.assertions;
 
-import api.assertions.conditions.JsonSchemeValidate;
-import api.assertions.conditions.StatusCodeCondition;
-import api.assertions.conditions.UserIdCondition;
-import api.assertions.conditions.UserUpdatedCondition;
+import api.assertions.conditions.*;
 import api.models.user.User;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 public class Conditions {
     public static StatusCodeCondition hasStatusCode(Integer expectedStatusCode){
@@ -22,5 +20,8 @@ public class Conditions {
     public static JsonSchemeValidate jsonScheme(String jsonSchemePath){
 
         return new JsonSchemeValidate(jsonSchemePath);
+    }
+    public static IdCondition idCondition(Integer id) {
+        return new IdCondition(id);
     }
 }

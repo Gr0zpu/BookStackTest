@@ -16,9 +16,9 @@ public class BookService {
     public AssertableResponse addNewBook(RequestSpecification specification, Book book){
         ValidatableResponse response = given().spec(specification)
                         .contentType(ContentType.MULTIPART)
-                .multiPart("name", book.getName())  // Передаем имя книги
-                .multiPart("description", book.getDescription())
-                .multiPart("description_html", book.getDescriptionHtml())
+                        .multiPart("name", book.getName())  // Передаем имя книги
+                        .multiPart("description", book.getDescription())
+                        .multiPart("description_html", book.getDescriptionHtml())
                         .multiPart("image", RandomTestData.getBookCover(), "image/jpg")
                         .post("api/books")
                         .then();
@@ -28,9 +28,17 @@ public class BookService {
     }
 
     public AssertableResponse getAvailableBooksList(RequestSpecification specification) {
-         return new AssertableResponse(given().spec(specification)
+        ValidatableResponse response =  given().spec(specification)
                 .get("api/books")
-                .then());
+                .then();
+        return new AssertableResponse(response);
+    }
+
+    public AssertableResponse getBookById(RequestSpecification specification, Integer id){
+        ValidatableResponse response = given().spec(specification)
+                .get("api/books/"+id)
+                .then();
+        return new AssertableResponse(response);
     }
 
 }
