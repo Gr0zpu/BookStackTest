@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import utils.AppConfig;
+import utils.Helpers;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -21,8 +22,10 @@ public class BaseTest {
     private String baseUrl;
     @BeforeEach
     public void setUp(){
+        String chromeOptionsEnv = System.getenv("CHROME_OPTIONS");
+
         baseUrl = appConfig.url();
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(Helpers.getChromeOption());
         driver.manage().window().setSize(new Dimension(1920, 1080));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
