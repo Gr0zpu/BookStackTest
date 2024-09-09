@@ -35,6 +35,9 @@ jobs:
           distribution: 'corretto'
           cache: 'gradle'
 
+      - uses: browser-actions/setup-firefox@v1
+      - run: firefox --version
+
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x gradlew
 
@@ -124,7 +127,7 @@ jobs:
           repository: gh-pages
           branch: gh-pages
           pull_args: --rebase -X ours
-          
+
       - name: Comment PR with Allure Report link
         if: ${{ always() && github.event_name == 'pull_request' && steps.allure.outputs.report_url }}
         continue-on-error: true
@@ -134,7 +137,6 @@ jobs:
             ${{ steps.allure.outputs.test_result_icon }} [Allure Report](${{ steps.allure.outputs.report_url }}) | [History](${{ steps.allure.outputs.report_history_url }})
           comment_tag: allure_report
           mode: recreate
-    
 
       - name: Fail the build if there were test failures
         run: |

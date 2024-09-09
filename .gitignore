@@ -44,4 +44,4 @@ bin/
 src/test/resources/localProject.properties
 /.env
 /.idea/developer-tools.xml
-/src/test/resources/shscripts/
+/src/test/resources/shscripts/*
