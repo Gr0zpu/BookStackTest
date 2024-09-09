@@ -38,7 +38,7 @@ jobs:
       - name: Install latest Google Chrome and ChromeDriver
         uses: browser-actions/setup-chrome@v1
         with:
-          chrome-version: 128.0.6613.113
+          chrome-version: '128.0.6613.113'
           install-chromedriver: true
 
       - name: Check Chrome and ChromeDriver version
