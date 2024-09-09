@@ -19,6 +19,8 @@ jobs:
       MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
       BACKUP_PASSWORD: ${{ secrets.BACKUP_PASSWORD }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      web_admin_login: ${{ secrets.WEB_ADMIN_LOGIN }}
+      web_admin_password: ${{ secrets.WEB_ADMIN_PASSWORD }}
 
     permissions:
       contents: write
