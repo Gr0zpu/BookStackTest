@@ -10,7 +10,8 @@ import selenium.pages.MainPage;
 
 public class LoginTests extends BaseTest {
     @BeforeEach
-    public void openSite() {getDriver().get(getBaseUrl() + "login"); }
+    public void openSite() {
+        getDriver().get(getBaseUrl() + "login"); }
 
     @Test
     public void loginTest() {
