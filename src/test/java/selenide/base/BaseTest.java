@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import selenide.pages.LoginPage;
@@ -30,5 +31,12 @@ public class BaseTest {
         new LoginPage().enterLogin(getWEB_ADMIN_LOGIN())
                 .enterPassword(getWEB_ADMIN_PASSWORD())
                 .clickLoginBtn();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        Selenide.clearBrowserCookies();
+        Selenide.clearBrowserLocalStorage();
+        Selenide.closeWebDriver();
     }
 }
