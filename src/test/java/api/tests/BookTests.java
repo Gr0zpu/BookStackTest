@@ -19,7 +19,7 @@ public class BookTests extends BaseTest{
     @Tag("API")
     @Tag("Positive")
     public void createNewBookTest() {
-        getBookService().addNewBook(getSpecification(), book)
+        getBookService().addNewBook(book)
                 .should(Conditions.hasStatusCode(200))
                 .should(Conditions.jsonScheme("jsonScheme/user/newBookResponse.json"));
     }
@@ -27,7 +27,7 @@ public class BookTests extends BaseTest{
     @Tag("API")
     @Tag("Positive")
     public void getAllAvailableBooksList() {
-        getBookService().getAvailableBooksList(getSpecification())
+        getBookService().getAvailableBooksList()
                 .should(Conditions.hasStatusCode(200))
                 .should(Conditions.jsonScheme("jsonScheme/user/getBooksList.json"));
     }
@@ -35,13 +35,29 @@ public class BookTests extends BaseTest{
     @Tag("API")
     @Tag("Positive")
     public void getBookByIdTest() {
-        getBookService().addNewBook(getSpecification(), book)
+        getBookService().addNewBook(book)
                 .should(Conditions.hasStatusCode(200))
                 .should(Conditions.jsonScheme("jsonScheme/user/newBookResponse.json"));
 
-        getBookService().getBookById(getSpecification(), book.getId())
+        getBookService().getBookById(book.getId())
                 .should(Conditions.hasStatusCode(200))
                 .should(Conditions.jsonScheme("jsonScheme/user/getBookById.json"))
                 .should(Conditions.idCondition(book.getId()));
+    }
+    @Test
+    @Tag("API")
+    @Tag("Positive")
+    public void updateBoolTest() {
+        getBookService().addNewBook(book)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/newBookResponse.json"));
+
+        getBookService().updateBookById(book)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.idCondition(book.getId()))
+                .should(Conditions.bookUpdated(book))
+                .should(Conditions.jsonScheme("jsonScheme/user/newBookResponse.json"));
+
+
     }
 }
