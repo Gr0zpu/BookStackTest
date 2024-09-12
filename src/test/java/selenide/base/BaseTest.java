@@ -6,6 +6,7 @@ import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import selenide.pages.LoginPage;
 import utils.AppConfig;
 import utils.Helpers;
 
@@ -22,5 +23,12 @@ public class BaseTest {
 
         System.out.println(appConfig.url());
         Configuration.baseUrl = appConfig.url();
+    }
+
+    public void login() {
+        Selenide.open("login");
+        new LoginPage().enterLogin(getWEB_ADMIN_LOGIN())
+                .enterPassword(getWEB_ADMIN_PASSWORD())
+                .clickLoginBtn();
     }
 }

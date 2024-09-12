@@ -11,6 +11,7 @@ import utils.RandomTestData;
 
 public class BookTests extends BaseTest {
     private Book book = RandomTestData.getRandomBook();
+
     @BeforeEach
     public void openSiteAndLogin() {
         getDriver().get(getBaseUrl() + "login");
