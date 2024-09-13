@@ -9,6 +9,7 @@ import selenium.base.BasePage;
 public class BookProfilePage extends BasePage {
     private By bookTitleH1 = By.xpath("//h1");
     private By bookDescriptionP = By.xpath("//div[@class='book-content']//div[@class='text-muted break-text']/p");
+    private By deleteBtn = By.xpath("//a[@data-shortcut='delete']");
     public BookProfilePage(WebDriver driver) {
         super(driver);
     }
@@ -21,6 +22,10 @@ public class BookProfilePage extends BasePage {
     }
     public String getBookDescription() {
         return getDriver().findElement(bookDescriptionP).getText();
+    }
+    public BookDeletePage deleteBook() {
+        getDriver().findElement(deleteBtn).click();
+        return new BookDeletePage(getDriver());
     }
 
 
