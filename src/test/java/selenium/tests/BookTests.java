@@ -20,7 +20,6 @@ public class BookTests extends BaseTest {
                 .enterPassword(getAppConfig().webAdminPassword())
                 .clickLoginBtn();
     }
-
     @Test
     public void createNewBookTest() {
         MainPage mainPage = new MainPage(getDriver());
@@ -33,6 +32,20 @@ public class BookTests extends BaseTest {
                 .saveBook()
                 .should().assertBookTitle(book)
                          .assertBookDescription(book);
-
+    }
+    @Test
+    public void deleteBookTest() {
+        MainPage mainPage = new MainPage(getDriver());
+        mainPage.getHeader().openBooksPage()
+                .createNewBook()
+                .enterBookName(book.getName())
+                .enterDescription(book.getDescription())
+                .addCover()
+                .addTags(book.getTags())
+                .saveBook()
+                .deleteBook()
+                .confirmDelete().getAllBooksTitles()
+                .should()
+                .bookNotAvailable(book);
     }
 }
