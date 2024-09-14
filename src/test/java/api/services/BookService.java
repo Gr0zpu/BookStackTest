@@ -56,5 +56,12 @@ public class BookService {
 
         return new AssertableResponse(response);
     }
+    public AssertableResponse deleteBookById(Book book) {
+        ValidatableResponse response = given().spec(BaseTest.getSpecification())
+                .delete("api/books/" + book.getId())
+                .then();
+
+        return new AssertableResponse(response);
+    }
 
 }
