@@ -57,7 +57,19 @@ public class BookTests extends BaseTest{
                 .should(Conditions.idCondition(book.getId()))
                 .should(Conditions.bookUpdated(book))
                 .should(Conditions.jsonScheme("jsonScheme/user/newBookResponse.json"));
+    }
+    @Test
+    @Tag("API")
+    @Tag("Positive")
+    public void deleteBookTest() {
+        getBookService().addNewBook(book)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/newBookResponse.json"));
 
+        getBookService().deleteBookById(book)
+                .should(Conditions.hasStatusCode(204));
 
+        getBookService().getBookById(book.getId())
+                .should(Conditions.hasStatusCode(404));
     }
 }
