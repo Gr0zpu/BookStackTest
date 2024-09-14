@@ -30,4 +30,18 @@ public class BooksTests extends BaseTest {
                            .assertBookTitle(book)
                            .assertBookDescription(book);
     }
+    @Test
+    public void deleteBookTest() {
+        new MainPage().getHeader().openBooksPage()
+                .createNewBook()
+                .enterBookName(book.getName())
+                .enterDescription(book.getDescription())
+                .addCover()
+                .addTags(book.getTags())
+                .saveBook()
+                .deleteBook()
+                .confirmDelete().getAllBooksTitles()
+                .should()
+                .bookNotAvailable(book);
+    }
 }
