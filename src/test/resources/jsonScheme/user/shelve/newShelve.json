@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "created_by": {
+      "type": "integer"
+    },
+    "updated_by": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "owned_by": {
+      "type": "integer"
+    },
+    "description_html": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer"
+          }
+        },
+        "required": ["name", "value", "order"]
+      }
+    },
+    "cover": {
+      "type": ["string", "null"]
+    }
+  },
+  "required": [
+    "id", "name", "slug", "description", "created_by", "updated_by",
+    "created_at", "updated_at", "owned_by", "description_html", "tags", "cover"
+  ]
+}
