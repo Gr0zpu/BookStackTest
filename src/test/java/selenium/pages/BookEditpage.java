@@ -6,10 +6,10 @@ import org.openqa.selenium.interactions.Actions;
 import selenium.base.BasePage;
 
 public class BookEditpage extends BasePage {
-    By nameInput = By.id("name");
-    By descriptionIframe = By.id("description_html_ifr");
-    By descriptionTextArea = By.id("tinymce");
-    By saveBookBtn = By.xpath("//button[text()='Save Book']");
+   private By nameInput = By.id("name");
+    private By descriptionIframe = By.id("description_html_ifr");
+    private By descriptionTextArea = By.id("tinymce");
+    private By saveBookBtn = By.xpath("//button[text()='Save Book']");
 
     public BookEditpage(WebDriver driver) {
         super(driver);
