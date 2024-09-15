@@ -10,10 +10,11 @@ import selenium.pages.MainPage;
 import utils.RandomTestData;
 
 public class BookTests extends BaseTest {
-    private Book book = RandomTestData.getRandomBook();
+    private Book book;
 
     @BeforeEach
     public void openSiteAndLogin() {
+        book = RandomTestData.getRandomBook();
         getDriver().get(getBaseUrl() + "login");
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.enterLogin(getAppConfig().webAdminLogin())
@@ -47,5 +48,21 @@ public class BookTests extends BaseTest {
                 .confirmDelete().getAllBooksTitles()
                 .should()
                 .bookNotAvailable(book);
+    }
+    @Test
+    public void editBookTest() {
+        Book dataBookForEdit = RandomTestData.getRandomBook();
+        new MainPage(getDriver()).getHeader().openBooksPage()
+                .createNewBook()
+                .enterBookName(book.getName())
+                .enterDescription(book.getDescription())
+                .addCover()
+                .addTags(book.getTags())
+                .saveBook().editBook()
+                .editName(dataBookForEdit.getName())
+                .editDescription(dataBookForEdit.getDescription())
+                .saveBook().should()
+                            .assertBookDescription(dataBookForEdit)
+                            .assertBookTitle(dataBookForEdit);
     }
 }
