@@ -2,6 +2,7 @@ package selenide.pages;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -15,11 +16,13 @@ public class LoginPage {
         loginInput.sendKeys(login);
         return this;
     }
+
     public LoginPage enterPassword(String password) {
         passwordInput.click();
         passwordInput.sendKeys(password);
         return this;
     }
+    @Step("Confirm login")
     public MainPage clickLoginBtn() {
         loginBtn.click();
         return Selenide.page(MainPage.class);

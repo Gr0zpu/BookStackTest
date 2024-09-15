@@ -1,5 +1,6 @@
 package selenium.pages;
 
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,18 +18,20 @@ public class BookProfilePage extends BasePage {
     public BookProfileAsserts should(){
         return new BookProfileAsserts(this);
     }
-
+    @Step
     public String getBookTitle() {
         return getDriver().findElement(bookTitleH1).getText();
     }
+    @Step
     public String getBookDescription() {
         return getDriver().findElement(bookDescriptionP).getText();
     }
+    @Step
     public BookDeletePage deleteBook() {
         getDriver().findElement(deleteBtn).click();
         return new BookDeletePage(getDriver());
     }
-
+    @Step
     public BookEditpage editBook() {
         getDriver().findElement(editBtn).click();
         return new BookEditpage(getDriver());

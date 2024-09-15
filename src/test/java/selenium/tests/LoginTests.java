@@ -1,6 +1,7 @@
 package selenium.tests;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import selenium.base.BasePage;
@@ -14,6 +15,9 @@ public class LoginTests extends BaseTest {
         getDriver().get(getBaseUrl() + "login"); }
 
     @Test
+    @Tag("UI")
+    @Tag("Positive")
+    @Tag("Positive")
     public void loginTest() {
         LoginPage loginPage = new LoginPage(getDriver());
         MainPage mainPage = loginPage.enterLogin(getAppConfig().webAdminLogin())

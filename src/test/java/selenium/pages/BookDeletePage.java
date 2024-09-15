@@ -1,5 +1,6 @@
 package selenium.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import selenium.base.BasePage;
@@ -10,6 +11,7 @@ public class BookDeletePage extends BasePage {
     public BookDeletePage(WebDriver driver) {
         super(driver);
     }
+    @Step
     public BooksPage confirmDelete() {
         getDriver().findElement(confirmBtn).click();
         return new BooksPage(getDriver());

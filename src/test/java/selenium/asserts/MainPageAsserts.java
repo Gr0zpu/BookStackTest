@@ -1,5 +1,6 @@
 package selenium.asserts;
 
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.Assertions;
@@ -16,12 +17,12 @@ public class MainPageAsserts {
     public MainPageAsserts(MainPage mainPage) {
         this.mainPage = mainPage;
     }
-
+    @Step
     public MainPageAsserts assertElementIsPresent(By hoverLocator) {
         Assertions.assertNotNull(mainPage.getDriver().findElement(hoverLocator));
         return this;
     }
-
+    @Step
     public MainPageAsserts assertUrlIsCorrect(){
         Assertions.assertEquals(mainPage.getDriver().getCurrentUrl(),appConfig.url());
         return this;
