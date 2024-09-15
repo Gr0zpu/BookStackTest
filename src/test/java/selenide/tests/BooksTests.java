@@ -44,4 +44,20 @@ public class BooksTests extends BaseTest {
                 .should()
                 .bookNotAvailable(book);
     }
+    @Test
+    public void editBookTest() {
+        Book updatedBook = RandomTestData.getRandomBook();
+        new MainPage().getHeader().openBooksPage()
+                .createNewBook()
+                .enterBookName(book.getName())
+                .enterDescription(book.getDescription())
+                .addCover()
+                .addTags(book.getTags())
+                .saveBook().editBook()
+                .editName(updatedBook.getName())
+                .editDescription(updatedBook.getDescription())
+                .saveBook().should()
+                            .assertBookTitle(updatedBook)
+                            .assertBookDescription(updatedBook);
+    }
 }
