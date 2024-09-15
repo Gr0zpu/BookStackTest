@@ -1,6 +1,7 @@
 package selenium.pages;
 
 import com.codeborne.selenide.ElementsCollection;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +23,7 @@ public class BooksPage extends BasePage {
     public BooksPage(WebDriver driver) {
         super(driver);
     }
-
+    @Step
     public BookCreatePage createNewBook() {
         getDriver().findElement(createNewBookBtn).click();
         return new BookCreatePage(getDriver());
@@ -39,6 +40,7 @@ public class BooksPage extends BasePage {
         }
         return this;
     }
+    @Step
     public BooksPage getAllBooksTitles() {
         booksTitle = new ArrayList<>();
         List<WebElement> paginationWebElements = getDriver().findElements(pagination);

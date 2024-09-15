@@ -1,5 +1,6 @@
 package selenium.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -15,6 +16,7 @@ public class BookEditpage extends BasePage {
         super(driver);
     }
 
+    @Step
     public BookEditpage editName(String newName) {
         getDriver().findElement(nameInput).click();
         getDriver().findElement(nameInput).clear();
@@ -22,7 +24,7 @@ public class BookEditpage extends BasePage {
 
         return this;
     }
-
+    @Step
     public BookEditpage editDescription(String newDescription) {
         getDriver().switchTo().frame(getDriver().findElement(descriptionIframe));
         getDriver().findElement(descriptionTextArea).click();
@@ -32,7 +34,7 @@ public class BookEditpage extends BasePage {
 
         return this;
     }
-
+    @Step
     public BookProfilePage saveBook() {
         getDriver().findElement(saveBookBtn).click();
         return new BookProfilePage(getDriver());

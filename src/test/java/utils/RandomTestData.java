@@ -38,9 +38,7 @@ public class RandomTestData {
                 .descriptionHtml("<p>" + faker.lorem().sentence() + "</p>")
                 .tags(getRandomTagList(tagQuantity))
                 .build();
-
     }
-
     public static List<TagsItem> getRandomTagList(Integer tags) {
         List<TagsItem> tagList = new ArrayList<>();
         for (int i = 0; i < tags; i++) {

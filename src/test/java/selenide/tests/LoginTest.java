@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import selenide.base.BaseTest;
 import selenide.pages.LoginPage;
@@ -17,6 +18,9 @@ public class LoginTest extends BaseTest {
         Selenide.open("login");
     }
     @Test
+    @Tag("UI")
+    @Tag("Selenide")
+    @Tag("Positive")
     public void successfulLoginTest() {
         LoginPage loginPage = new LoginPage();
         MainPage mainPage = loginPage.enterLogin(getWEB_ADMIN_LOGIN())

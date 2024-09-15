@@ -2,6 +2,7 @@ package selenide.pages;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import selenide.asserts.BookProfileAsserts;
 
@@ -23,11 +24,12 @@ public class BookProfilePage {
     public BookProfileAsserts should() {
         return new BookProfileAsserts(this);
     }
-
+@Step("Choice 'delete book'")
     public BookDeletePage deleteBook() {
         deleteBtn.click();
         return Selenide.page(BookDeletePage.class);
     }
+    @Step("Choice 'edit book'")
     public BookEditPage editBook() {
         editBtn.click();
         return Selenide.page(BookEditPage.class);
