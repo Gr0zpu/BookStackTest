@@ -25,4 +25,12 @@ public class ShelveService {
 
     return new AssertableResponse(response);
     }
+
+    public AssertableResponse getShelveById(Shelve shelve) {
+        ValidatableResponse response = given().spec(BaseTest.getSpecification())
+                .get("api/shelves/" + shelve.getId())
+                .then();
+
+        return new AssertableResponse(response);
+    }
 }

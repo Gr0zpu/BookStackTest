@@ -14,7 +14,7 @@ import static io.restassured.RestAssured.given;
 public class ShelvesTests extends BaseTest {
     private Shelve shelve;
     @BeforeEach
-    public void initTestBook() {
+    public void initTestShelve() {
         shelve = RandomTestData.getRandomShelve();
     }
 
@@ -25,5 +25,18 @@ public class ShelvesTests extends BaseTest {
         getShelveService().addNewShelve(shelve)
                 .should(Conditions.hasStatusCode(200))
                 .should(Conditions.jsonScheme("jsonScheme/user/shelve/newShelve.json"));
+    }
+    @Test
+    @Tag("API")
+    @Tag("Positive")
+    public void getShelveById() {
+        getShelveService().addNewShelve(shelve)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/shelve/newShelve.json"));
+
+        getShelveService().getShelveById(shelve)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/shelve/getShelveById.json"))
+                .should(Conditions.idCondition(shelve.getId()));
     }
 }
