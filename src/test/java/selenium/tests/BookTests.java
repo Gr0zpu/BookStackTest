@@ -42,11 +42,11 @@ public class BookTests extends BaseTest {
                 .deleteBook()
                 .confirmDelete().getAllBooksTitles()
                 .should()
-                .bookNotAvailable(book);
+                .assertBookNotAvailable(book);
     }
     @Test
     @Tag("UI")
-    @Tag("Positive")
+    @Tag("Selenium")
     @Tag("Positive")
     public void editBookTest() {
         Book dataBookForEdit = RandomTestData.getRandomBook();
@@ -56,5 +56,21 @@ public class BookTests extends BaseTest {
                 .saveBook().should()
                             .assertBookDescription(dataBookForEdit)
                             .assertBookTitle(dataBookForEdit);
+    }
+
+    @Test
+    @Tag("UI")
+    @Tag("Selenium")
+    @Tag("Positive")
+    public void copyBookTest() {
+        Book newBook = new Book();
+        newBook.setName(RandomTestData.getUniqString(book.getName()));
+        dataService.createNewBook(book)
+                .copyBook()
+                .setNewBookName(newBook.getName())
+                .confirmCopyBook()
+                .getHeader().openBooksPage()
+                .getAllBooksTitles().should()
+                                    .assertBookAvailable(newBook);
     }
 }

@@ -9,8 +9,13 @@ import selenium.pages.BooksPage;
 public class BooksPageAsserts {
     private BooksPage booksPage;
     @Step
-    public BooksPageAsserts bookNotAvailable(Book book) {
+    public BooksPageAsserts assertBookNotAvailable(Book book) {
         Assertions.assertFalse(booksPage.getBooksTitle().contains(book.getName()));
+        return new BooksPageAsserts(booksPage);
+    }
+    @Step
+    public BooksPageAsserts assertBookAvailable(Book book) {
+        Assertions.assertTrue(booksPage.getBooksTitle().contains(book.getName()));
         return new BooksPageAsserts(booksPage);
     }
 }

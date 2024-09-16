@@ -9,10 +9,9 @@ import lombok.Setter;
 
 import java.awt.*;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
 
 public class RandomTestData {
     private static final Random random = new Random();
@@ -70,5 +69,9 @@ public class RandomTestData {
                 .tags(getRandomTagList(3))
                 .books(Arrays.asList(7,5,6))
                 .build();
+    }
+
+    public static String getUniqString(String string) {
+        return string + new SimpleDateFormat("HHmmssSS").format(new Date());
     }
 }
