@@ -1,6 +1,7 @@
 package selenium.pages;
 
 import com.codeborne.selenide.ElementsCollection;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
@@ -51,6 +52,8 @@ public class BooksPage extends BasePage {
             }
             getDriver().findElement(nextPageBtn).click();
         }
+
+        Allure.addAttachment("booksList", booksTitle.toString());
         return this;
     }
 }
