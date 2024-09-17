@@ -1,6 +1,7 @@
 package selenium.asserts;
 
 import api.models.book.Book;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Assertions;
@@ -15,6 +16,8 @@ public class BooksPageAsserts {
     }
     @Step
     public BooksPageAsserts assertBookAvailable(Book book) {
+        Allure.addAttachment("book_list", booksPage.getBooksTitle().toString());
+        Allure.addAttachment("new_book_name", book.getName());
         Assertions.assertTrue(booksPage.getBooksTitle().contains(book.getName()));
         return new BooksPageAsserts(booksPage);
     }
