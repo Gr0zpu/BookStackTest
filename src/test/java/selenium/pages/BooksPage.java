@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import selenium.asserts.BooksPageAsserts;
 import selenium.base.BasePage;
+import selenium.services.WaitService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,7 @@ public class BooksPage extends BasePage {
     @Step
     public BooksPage getAllBooksTitles() {
         booksTitle = new ArrayList<>();
+        WaitService.wait10(booksTitleList,getDriver());
         List<WebElement> paginationWebElements = getDriver().findElements(pagination);
         for (WebElement pagination : paginationWebElements) {
 
