@@ -50,20 +50,8 @@ jobs:
 
       - name: Override old Chrome path
         run: |
-          sudo rm /usr/bin/google-chrome  # Удаляем старую версию из /usr/bin
+          sudo rm /usr/bin/google-chrome
           sudo ln -s /opt/hostedtoolcache/setup-chrome/chromium/stable/x64/chrome /usr/bin/google-chrome 
-
-      - name: Get Chrome and ChromeDriver paths and versions
-        run: |
-          echo "Chrome path:"
-          which google-chrome
-          echo "Chrome version:"
-          google-chrome --version
-          
-          echo "ChromeDriver path:"
-          which chromedriver
-          echo "ChromeDriver version:"
-          chromedriver --version
 
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x gradlew
