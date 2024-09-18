@@ -48,6 +48,18 @@ jobs:
           chrome --version
           chromedriver --version
 
+      - name: Get Chrome and ChromeDriver paths and versions
+        run: |
+          echo "Chrome path:"
+          which google-chrome
+          echo "Chrome version:"
+          google-chrome --version
+          
+          echo "ChromeDriver path:"
+          which chromedriver
+          echo "ChromeDriver version:"
+          chromedriver --version
+
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x gradlew
 

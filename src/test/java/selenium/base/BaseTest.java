@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import utils.AppConfig;
 import utils.Helpers;
@@ -23,6 +24,9 @@ public class BaseTest {
     @BeforeEach
     public void setUp(){
         String chromeOptionsEnv = System.getenv("CHROME_OPTIONS");
+        if(appConfig.isLocal() == null){
+            chromeRemoteSetup(chromeOptionsEnv);
+        }
 
         baseUrl = appConfig.url();
         driver = new ChromeDriver(Helpers.getChromeOption());
@@ -33,5 +37,18 @@ public class BaseTest {
     @AfterEach
     public void tearDown() {
         driver.close();
+    }
+
+    public void chromeRemoteSetup(String chromeOptionsEnv) {
+        ChromeOptions options = new ChromeOptions();
+
+        options.setBinary("/opt/hostedtoolcache/setup-chrome/chromium/stable/x64/chrome");
+
+        if (chromeOptionsEnv != null && !chromeOptionsEnv.isEmpty()) {
+            String[] optionsArray = chromeOptionsEnv.split(" ");
+            for (String option : optionsArray) {
+                options.addArguments(option);
+            }
+        }
     }
 }

@@ -18,5 +18,6 @@ public interface AppConfig extends Config {
     @Key("web_admin_password")
     String webAdminPassword();
 
-
+    @Key("isLocal")
+    Boolean isLocal();
 }
