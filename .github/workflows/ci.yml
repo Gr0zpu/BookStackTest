@@ -48,6 +48,11 @@ jobs:
           chrome --version
           chromedriver --version
 
+      - name: Override old Chrome path
+        run: |
+          sudo rm /usr/bin/google-chrome  # Удаляем старую версию из /usr/bin
+          sudo ln -s /opt/hostedtoolcache/setup-chrome/chromium/stable/x64/chrome /usr/bin/google-chrome 
+
       - name: Get Chrome and ChromeDriver paths and versions
         run: |
           echo "Chrome path:"
