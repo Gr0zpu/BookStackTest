@@ -10,7 +10,7 @@ import selenium.components.Header;
 
 public class BookProfilePage extends BasePage {
     @Getter
-    private Header header = new Header(getDriver());
+    private Header header;
     private By bookTitleH1 = By.xpath("//h1");
     private By bookDescriptionP = By.xpath("//div[@class='book-content']//div[@class='text-muted break-text']/p");
     private By deleteBtn = By.xpath("//a[@data-shortcut='delete']");
@@ -18,6 +18,7 @@ public class BookProfilePage extends BasePage {
     private By copyBtn = By.xpath("//div//a[@data-shortcut='copy']");
     public BookProfilePage(WebDriver driver) {
         super(driver);
+        header = new Header(getDriver());
     }
     public BookProfileAsserts should(){
         return new BookProfileAsserts(this);

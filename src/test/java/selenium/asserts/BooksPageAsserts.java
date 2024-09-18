@@ -16,8 +16,6 @@ public class BooksPageAsserts {
     }
     @Step
     public BooksPageAsserts assertBookAvailable(Book book) {
-        Allure.addAttachment("book_list", booksPage.getBooksTitle().toString());
-        Allure.addAttachment("new_book_name", book.getName());
         Assertions.assertTrue(booksPage.getBooksTitle().contains(book.getName()));
         return new BooksPageAsserts(booksPage);
     }

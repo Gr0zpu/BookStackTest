@@ -11,7 +11,7 @@ public class BookCopyPage extends BasePage {
     public BookCopyPage(WebDriver driver) {
         super(driver);
     }
-    @Step
+    @Step("Set new name")
     public BookCopyPage setNewBookName(String newName) {
         getDriver().findElement(nameInput).click();
         getDriver().findElement(nameInput).clear();
