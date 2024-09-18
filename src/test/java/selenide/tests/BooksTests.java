@@ -6,9 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import selenide.base.BaseTest;
-import selenide.pages.BookProfilePage;
-import selenide.pages.LoginPage;
-import selenide.pages.MainPage;
 import selenide.services.DataService;
 import utils.RandomTestData;
 
@@ -41,7 +38,7 @@ public class BooksTests extends BaseTest {
                     .deleteBook()
                     .confirmDelete().getAllBooksTitles()
                     .should()
-                    .bookNotAvailable(book);
+                    .assertBookNotAvailable(book);
     }
     @Test
     @Tag("UI")
@@ -57,5 +54,20 @@ public class BooksTests extends BaseTest {
                     .saveBook().should()
                                 .assertBookTitle(updatedBook)
                                 .assertBookDescription(updatedBook);
+    }
+    @Test
+    @Tag("UI")
+    @Tag("Selenide")
+    @Tag("Positive")
+    public void copyBookTest() {
+        Book newBook = new Book();
+        newBook.setName(RandomTestData.getUniqString(book.getName()));
+        dataService.createNewBook(book)
+                .copyBook()
+                .setNewBookName(newBook.getName())
+                .confirmBookCopy()
+                .getHeader().openBooksPage()
+                .getAllBooksTitles().should()
+                                    .assertBookAvailable(newBook);
     }
 }

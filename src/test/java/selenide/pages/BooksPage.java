@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import selenide.asserts.BooksPageAsserts;
 
 import java.util.ArrayList;
@@ -28,16 +29,24 @@ public class BooksPage {
 
     public BooksPage getAllBooksTitles() {
         booksTitles = new ArrayList<>();
-        for (SelenideElement page : paginationPages){
-            for (SelenideElement title: booksTitleList){
-                booksTitles.add(title.getText());
+        if (!paginationPages.isEmpty()){
+            for (SelenideElement pagination : paginationPages){
+                addTitlesFromMainPAge();
+                nextPageBtn.click();
             }
-            nextPageBtn.click();
+        }else {
+            addTitlesFromMainPAge();
         }
         return this;
     }
 
     public BooksPageAsserts should() {
         return new BooksPageAsserts(this);
+    }
+
+    public void addTitlesFromMainPAge() {
+        for (SelenideElement title: booksTitleList){
+            booksTitles.add(title.getText());
+        }
     }
 }
