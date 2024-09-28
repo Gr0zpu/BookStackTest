@@ -1,6 +1,7 @@
 package api.tests;
 
 import api.services.BookService;
+import api.services.PageService;
 import api.services.ShelveService;
 import api.services.UserService;
 import io.restassured.RestAssured;
@@ -26,6 +27,8 @@ public class BaseTest {
     private static BookService bookService;
     @Getter
     private static ShelveService shelveService;
+    @Getter
+    private static PageService pageService;
 
     @BeforeAll
     public static void setUp(){
@@ -33,6 +36,7 @@ public class BaseTest {
         userService = new UserService();
         bookService = new BookService();
         shelveService = new ShelveService();
+        pageService = new PageService();
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter(), new CustomAllureRestAssured());
         specification = RestAssured.given()
                 .header("Authorization", String.format("Token %s:%s", appConfig.adminApiKey(), appConfig.adminApiSecretKey()))

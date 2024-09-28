@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "book_id": {
+      "type": ["integer", "null"]
+    },
+    "chapter_id": {
+      "type": ["integer", "null"]
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "slug": {
+      "type": "string"
+    },
+    "html": {
+      "type": ["string", "null"]
+    },
+    "markdown": {
+      "type": ["string", "null"]
+    },
+    "priority": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "name", "slug"]
+    },
+    "updated_by": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "name", "slug"]
+    },
+    "owned_by": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "name", "slug"]
+    },
+    "draft": {
+      "type": "boolean"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer"
+          }
+        },
+        "required": ["name", "value", "order"]
+      }
+    },
+    "revision_count": {
+      "type": "integer"
+    },
+    "template": {
+      "type": "boolean"
+    },
+    "editor": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "slug",
+    "priority",
+    "created_at",
+    "updated_at",
+    "created_by",
+    "updated_by",
+    "draft",
+    "revision_count",
+    "template",
+    "owned_by"
+  ],
+  "dependencies": {
+    "book_id": {
+      "anyOf": [
+        {
+          "required": ["book_id"]
+        },
+        {
+          "required": ["chapter_id"]
+        }
+      ]
+    },
+    "chapter_id": {
+      "anyOf": [
+        {
+          "required": ["chapter_id"]
+        },
+        {
+          "required": ["book_id"]
+        }
+      ]
+    },
+    "html": {
+      "anyOf": [
+        {
+          "required": ["html"]
+        },
+        {
+          "required": ["markdown"]
+        }
+      ]
+    },
+    "markdown": {
+      "anyOf": [
+        {
+          "required": ["markdown"]
+        },
+        {
+          "required": ["html"]
+        }
+      ]
+    }
+  }
+}
