@@ -59,6 +59,10 @@ public class ShelvesTests extends BaseTest {
     @Tag("API")
     @Tag("Positive")
     public void deleteShelveTest() {
+        getShelveService().addNewShelve(shelve)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/shelve/newShelve.json"));
+
         getShelveService().deleteShelveById(shelve)
                 .should(Conditions.hasStatusCode(204));
 

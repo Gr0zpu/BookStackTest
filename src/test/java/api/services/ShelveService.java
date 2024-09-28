@@ -40,14 +40,14 @@ public class ShelveService {
         ValidatableResponse response = given().spec(BaseTest.getSpecification())
                 .get("api/shelves")
                 .then();
+        return new AssertableResponse(response);
+    }
 
-
-    @Step("Delete shelve by ID")
     public AssertableResponse deleteShelveById(Shelve shelve) {
         ValidatableResponse response = given().spec(BaseTest.getSpecification())
                 .delete("api/shelves/" + shelve.getId())
                 .then();
-
         return new AssertableResponse(response);
     }
+
 }
