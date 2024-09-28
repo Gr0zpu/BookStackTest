@@ -27,4 +27,7 @@ public class Conditions {
     public static BookUpdateCondition bookUpdated(Book book) {
         return new BookUpdateCondition(book);
     }
+    public static IdInListCondition checkIdInList(Integer id) {
+        return new IdInListCondition(id);
+    }
 }
