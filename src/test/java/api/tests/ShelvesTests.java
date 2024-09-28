@@ -69,4 +69,19 @@ public class ShelvesTests extends BaseTest {
         getShelveService().getShelveById(shelve)
                 .should(Conditions.hasStatusCode(404));
     }
+
+    @Test
+    @Tag("API")
+    @Tag("Positive")
+    public void updateShelveById() {
+        getShelveService().addNewShelve(shelve)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/shelve/newShelve.json"));
+
+        getShelveService().updateShelveById(shelve)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.idCondition(shelve.getId()))
+                .should(Conditions.shelveUpdateCondition(shelve))
+                .should(Conditions.jsonScheme("jsonScheme/user/shelve/newShelve.json"));
+    }
 }
