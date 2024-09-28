@@ -1,8 +1,5 @@
 package api.assertions.conditions;
 
-import com.github.fge.jsonschema.main.JsonSchema;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Step;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.ValidatableResponse;
 import lombok.RequiredArgsConstructor;

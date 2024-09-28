@@ -34,11 +34,20 @@ public class ShelveService {
 
         return new AssertableResponse(response);
     }
-    @Step("Delete shelve by ID")
+
+
+    public AssertableResponse getShelvesList() {
+        ValidatableResponse response = given().spec(BaseTest.getSpecification())
+                .get("api/shelves")
+                .then();
+        return new AssertableResponse(response);
+    }
+
     public AssertableResponse deleteShelveById(Shelve shelve) {
         ValidatableResponse response = given().spec(BaseTest.getSpecification())
                 .delete("api/shelves/" + shelve.getId())
                 .then();
         return new AssertableResponse(response);
     }
+
 }
