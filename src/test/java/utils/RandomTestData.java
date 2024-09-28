@@ -2,6 +2,7 @@ package utils;
 
 import api.models.book.Book;
 import api.models.book.TagsItem;
+import api.models.page.Page;
 import api.models.shelve.Shelve;
 import com.github.javafaker.Faker;
 import api.models.user.User;
@@ -71,7 +72,24 @@ public class RandomTestData {
                 .build();
     }
 
+    public static Page getRandomPage(Integer bookId) {
+        return Page.builder()
+                .name(faker.lordOfTheRings().character())
+                .html(getHtmlDescription())
+                .bookId(bookId)
+                .build();
+    }
+
     public static String getUniqString(String string) {
         return string + new SimpleDateFormat("HHmmssSS").format(new Date());
+    }
+
+    public static String getHtmlDescription() {
+        String html =
+                "<h1>" + faker.book().title() + "</h1>\n" +
+                "<p>" + faker.lorem().paragraph() + "</p>\n" +
+                "<p>" + faker.lorem().sentence() + "</p>\n" +
+                "<p>" + faker.lorem().sentence() + "</p>\n";
+        return html;
     }
 }
