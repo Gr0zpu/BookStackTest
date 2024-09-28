@@ -2,6 +2,7 @@ package api.assertions;
 
 import api.assertions.conditions.*;
 import api.models.book.Book;
+import api.models.shelve.Shelve;
 import api.models.user.User;
 
 public class Conditions {
@@ -29,5 +30,8 @@ public class Conditions {
     }
     public static IdInListCondition checkIdInList(Integer id) {
         return new IdInListCondition(id);
+    }
+    public static ShelveUpdateCondition shelveUpdateCondition(Shelve shelve) {
+        return new ShelveUpdateCondition(shelve);
     }
 }

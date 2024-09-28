@@ -50,4 +50,17 @@ public class ShelveService {
         return new AssertableResponse(response);
     }
 
+    public AssertableResponse updateShelveById(Shelve oldShelve) {
+        Shelve updateShelve = RandomTestData.getRandomShelve();
+
+        ValidatableResponse response = given().spec(BaseTest.getSpecification())
+                .contentType(ContentType.MULTIPART)
+                .multiPart("name", updateShelve.getName())
+                .multiPart("description", updateShelve.getDescriptionHtml())
+                .put("api/shelves/" + oldShelve.getId())
+                .then();
+
+        return new AssertableResponse(response);
+    }
+
 }
