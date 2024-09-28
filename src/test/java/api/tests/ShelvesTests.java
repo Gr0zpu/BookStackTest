@@ -39,4 +39,19 @@ public class ShelvesTests extends BaseTest {
                 .should(Conditions.jsonScheme("jsonScheme/user/shelve/getShelveById.json"))
                 .should(Conditions.idCondition(shelve.getId()));
     }
+
+    @Test
+    @Tag("API")
+    @Tag("Positive")
+    public void deleteShelveTest() {
+        getShelveService().addNewShelve(shelve)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/shelve/newShelve.json"));
+
+        getShelveService().deleteShelveById(shelve)
+                .should(Conditions.hasStatusCode(204));
+
+        getShelveService().getShelveById(shelve)
+                .should(Conditions.hasStatusCode(404));
+    }
 }
