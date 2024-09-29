@@ -66,7 +66,8 @@ public class PageTests extends BaseTest{
 
         getPageService().getPagesList()
                 .should(Conditions.hasStatusCode(200))
-                .should(Conditions.jsonScheme("jsonScheme/user/page/pagesList.json"));
+                .should(Conditions.jsonScheme("jsonScheme/user/page/pagesList.json"))
+                .should(Conditions.checkIdInList(page.getId()));
     }
 
 }
