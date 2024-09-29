@@ -29,4 +29,11 @@ public class PageService {
                 .then();
         return new AssertableResponse(response);
     }
+
+    public AssertableResponse getPageById(Page page) {
+        ValidatableResponse response = given().spec(BaseTest.getSpecification())
+                .get("api/pages/" + page.getId())
+                .then();
+        return new AssertableResponse(response);
+    }
 }

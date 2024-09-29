@@ -39,5 +39,21 @@ public class PageTests extends BaseTest{
 
         getPageService().deletePage(page)
                 .should(Conditions.hasStatusCode(204));
+
+        getPageService().getPageById(page)
+                .should(Conditions.hasStatusCode(404));
+    }
+
+    @Test
+    @Tag("API")
+    @Tag("Positive")
+    public void pageGetById() {
+        getPageService().addNewPage(page)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/page/newPage.json"));
+
+        getPageService().getPageById(page)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/page/newPage.json"));
     }
 }
