@@ -18,7 +18,7 @@ import utils.AppConfig;
 
 public class BaseTest {
     @Getter
-    private static AppConfig appConfig = ConfigFactory.create(AppConfig.class);
+    private static final AppConfig appConfig = ConfigFactory.create(AppConfig.class);
     @Getter
     private static RequestSpecification specification;
     @Getter
