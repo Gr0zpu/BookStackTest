@@ -18,6 +18,15 @@ public class PageService {
                 .post("api/pages")
                 .then();
 
+        page.setId(response.extract().jsonPath().getInt("id"));
+
+        return new AssertableResponse(response);
+    }
+
+    public AssertableResponse deletePage(Page page) {
+        ValidatableResponse response = given().spec(BaseTest.getSpecification())
+                .delete("api/pages/" + page.getId())
+                .then();
         return new AssertableResponse(response);
     }
 }
