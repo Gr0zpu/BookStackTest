@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "book_id": {
+            "type": "integer"
+          },
+          "chapter_id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer"
+          },
+          "draft": {
+            "type": "boolean"
+          },
+          "revision_count": {
+            "type": "integer"
+          },
+          "template": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_by": {
+            "type": "integer"
+          },
+          "updated_by": {
+            "type": "integer"
+          },
+          "owned_by": {
+            "type": "integer"
+          },
+          "editor": {
+            "type": "string"
+          },
+          "book_slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "book_id",
+          "chapter_id",
+          "name",
+          "slug",
+          "priority",
+          "draft",
+          "revision_count",
+          "template",
+          "created_at",
+          "updated_at",
+          "created_by",
+          "updated_by",
+          "owned_by",
+          "editor",
+          "book_slug"
+        ]
+      }
+    },
+    "total": {
+      "type": "integer"
+    }
+  },
+  "required": ["data", "total"]
+}

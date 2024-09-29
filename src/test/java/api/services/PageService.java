@@ -36,4 +36,11 @@ public class PageService {
                 .then();
         return new AssertableResponse(response);
     }
+
+    public AssertableResponse getPagesList() {
+        ValidatableResponse response = given().spec(BaseTest.getSpecification())
+                .get("api/pages")
+                .then();
+        return new AssertableResponse(response);
+    }
 }
