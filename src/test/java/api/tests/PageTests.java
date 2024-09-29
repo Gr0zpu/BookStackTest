@@ -56,4 +56,17 @@ public class PageTests extends BaseTest{
                 .should(Conditions.hasStatusCode(200))
                 .should(Conditions.jsonScheme("jsonScheme/user/page/newPage.json"));
     }
+    @Test
+    @Tag("API")
+    @Tag("Positive")
+    public void pagesGetList() {
+        getPageService().addNewPage(page)
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/page/newPage.json"));
+
+        getPageService().getPagesList()
+                .should(Conditions.hasStatusCode(200))
+                .should(Conditions.jsonScheme("jsonScheme/user/page/pagesList.json"));
+    }
+
 }
