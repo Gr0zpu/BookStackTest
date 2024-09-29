@@ -2,6 +2,7 @@ package api.assertions;
 
 import api.assertions.conditions.*;
 import api.models.book.Book;
+import api.models.page.Page;
 import api.models.shelve.Shelve;
 import api.models.user.User;
 
@@ -33,5 +34,8 @@ public class Conditions {
     }
     public static ShelveUpdateCondition shelveUpdateCondition(Shelve shelve) {
         return new ShelveUpdateCondition(shelve);
+    }
+    public static PageUpdateCondition pageUpdateCondition(Page page){
+        return new PageUpdateCondition(page);
     }
 }

@@ -5,7 +5,9 @@ import api.models.book.Book;
 import api.models.page.Page;
 import api.tests.BaseTest;
 import com.github.javafaker.Faker;
+import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
+import utils.RandomTestData;
 
 import static io.restassured.RestAssured.given;
 
@@ -41,6 +43,19 @@ public class PageService {
         ValidatableResponse response = given().spec(BaseTest.getSpecification())
                 .get("api/pages")
                 .then();
+        return new AssertableResponse(response);
+    }
+
+    public AssertableResponse updatePageById(Page oldPage) {
+        String newName = faker.book().title();
+        String newDescriptionHtml = faker.lordOfTheRings().character();
+        ValidatableResponse response = given().spec(BaseTest.getSpecification())
+                .contentType(ContentType.MULTIPART)
+                .multiPart("description_html", newDescriptionHtml)
+                .multiPart("name", newName)
+                .put("api/pages/" + oldPage.getId())
+                .then();
+
         return new AssertableResponse(response);
     }
 }
