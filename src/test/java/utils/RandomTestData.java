@@ -75,7 +75,7 @@ public class RandomTestData {
     public static Page getRandomPage(Integer bookId) {
         return Page.builder()
                 .name(faker.lordOfTheRings().character())
-                .html(getHtmlDescription())
+                .html(getRandomDescription())
                 .bookId(bookId)
                 .build();
     }
@@ -91,5 +91,14 @@ public class RandomTestData {
                 "<p>" + faker.lorem().sentence() + "</p>\n" +
                 "<p>" + faker.lorem().sentence() + "</p>\n";
         return html;
+    }
+
+    public static String getRandomDescription() {
+        String text =
+                faker.book().title() +"\n" +
+                faker.lorem().paragraph() +"\n" +
+                faker.lorem().paragraph() +"\n" +
+                faker.lorem().paragraph() +"\n";
+        return text;
     }
 }

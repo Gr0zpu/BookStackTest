@@ -8,6 +8,9 @@ import selenium.asserts.BookProfileAsserts;
 import selenium.base.BasePage;
 import selenium.components.Header;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BookProfilePage extends BasePage {
     @Getter
     private Header header;
@@ -16,6 +19,9 @@ public class BookProfilePage extends BasePage {
     private By deleteBtn = By.xpath("//a[@data-shortcut='delete']");
     private By editBtn = By.xpath("//div//a[@data-shortcut='edit']");
     private By copyBtn = By.xpath("//div//a[@data-shortcut='copy']");
+    private By addPageBtn = By.xpath("//a[@data-shortcut='new']//span[text()='New Page']");
+    private By allPageAndChapterNames = By.xpath("//h4");
+    private By getAllPageAndChapterDescription = By.xpath("//p[@class='text-muted break-text']");
     public BookProfilePage(WebDriver driver) {
         super(driver);
         header = new Header(getDriver());
@@ -48,6 +54,24 @@ public class BookProfilePage extends BasePage {
         return new BookCopyPage(getDriver());
     }
 
+    @Step
+    public PageCreatePage createPage() {
+        getDriver().findElement(addPageBtn).click();
+        return new PageCreatePage(getDriver());
+    }
+    @Step
+    public List<String> getAllPageAndChapterNames() {
+        List<String> names = new ArrayList<>();
+        getDriver().findElements(allPageAndChapterNames).forEach(x -> names.add(x.getText()));
+
+        return names;
+    }
+    public List<String> getAllPageAndChapterDescription() {
+        List<String> description = new ArrayList<>();
+        getDriver().findElements(getAllPageAndChapterDescription).forEach(x -> description.add(x.getText()));
+
+        return description;
+    }
 
 
 
