@@ -19,7 +19,7 @@ public class BookProfilePage extends BasePage {
     private By deleteBtn = By.xpath("//a[@data-shortcut='delete']");
     private By editBtn = By.xpath("//div//a[@data-shortcut='edit']");
     private By copyBtn = By.xpath("//div//a[@data-shortcut='copy']");
-    private By addPageBtn = By.xpath("//a[@data-shortcut='new']//span[text()='New Page']");
+    private By addPageBtn = By.xpath("//a[@data-shortcut='new']//span[text()='New Page']" );
     private By allPageAndChapterNames = By.xpath("//h4");
     private By getAllPageAndChapterDescription = By.xpath("//p[@class='text-muted break-text']");
     public BookProfilePage(WebDriver driver) {
@@ -72,8 +72,4 @@ public class BookProfilePage extends BasePage {
 
         return description;
     }
-
-
-
-
 }
