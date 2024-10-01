@@ -73,12 +73,4 @@ public class BookTests extends BaseTest {
                 .getAllBooksTitles().should()
                                     .assertBookAvailable(newBook);
     }
-
-    @Test
-    @Tag("UI")
-    @Tag("Selenium")
-    @Tag("Positive")
-    public void addPageTest() {
-
-    }
 }
