@@ -1,0 +1,67 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset = UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/bash.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/json.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/xml.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
+    <style>
+        pre {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <pre><code>POST: http://localhost:6875/api/pages</code></pre>
+</div>
+
+    <h4>Body</h4>
+    <div>
+        <pre><code>
+{
+    "book_id": 5,
+    "name": "Aragorn",
+    "html": "The Cricket on the Hearth\nLaboriosam hic reiciendis ex praesentium itaque aut voluptas. Magni molestias voluptatem animi. Est modi culpa debitis fuga eum. Ipsa necessitatibus recusandae delectus.\nId voluptatem vel molestias vel illo facere. Quasi et non. Voluptate optio minus magni. Occaecati iure iusto aperiam nihil assumenda qui velit. Suscipit qui est quos.\nQui dolorum libero. Soluta veniam autem praesentium est eius est est. Facere ut deserunt libero beatae quia culpa ipsam. Voluptas voluptas laboriosam. Sunt tenetur amet odio perspiciatis ea.\n"
+}</code></pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>
+                <pre><code><b>Authorization</b>:
+Token ***************************
+</code></pre>
+            </div>
+            <div>
+                <pre><code><b>Accept</b>:
+*/*
+</code></pre>
+            </div>
+            <div>
+                <pre><code><b>Content-Type</b>:
+application/json
+</code></pre>
+            </div>
+    </div>
+
+
+    <h4>Curl</h4>
+    <div>
+        <pre><code>
+curl -v -X POST 'http://localhost:6875/api/pages' -H 'Authorization: Token ***************************' -H 'Accept: */*' -H 'Content-Type: application/json' -d '{
+    "book_id": 5,
+    "name": "Aragorn",
+    "html": "The Cricket on the Hearth\nLaboriosam hic reiciendis ex praesentium itaque aut voluptas. Magni molestias voluptatem animi. Est modi culpa debitis fuga eum. Ipsa necessitatibus recusandae delectus.\nId voluptatem vel molestias vel illo facere. Quasi et non. Voluptate optio minus magni. Occaecati iure iusto aperiam nihil assumenda qui velit. Suscipit qui est quos.\nQui dolorum libero. Soluta veniam autem praesentium est eius est est. Facere ut deserunt libero beatae quia culpa ipsam. Voluptas voluptas laboriosam. Sunt tenetur amet odio perspiciatis ea.\n"
+}'</code></pre>
+    </div>
+</body>
+</html>
